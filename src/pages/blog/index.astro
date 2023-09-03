@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { ViewTransitions } from "astro:transitions";
 import { SITE_TITLE } from "../../consts";
 
 const title = `Blogs | ${SITE_TITLE}`;
@@ -15,7 +14,7 @@ const posts = (await getCollection("blog"))
 
 <BaseLayout
   title={title}
-  description="Some random things i've learned and want to share"
+  description="A collection of blogs written by me."
   transition:persist
 >
   <main class="container lg:max-w-4xl mx-auto mt-4">
