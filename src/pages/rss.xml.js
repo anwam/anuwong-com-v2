@@ -4,7 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 export async function GET(context) {
 	const posts = await getCollection('blog');
-	const filtered = posts.filter((post) => !post.data.draft);
+	const filtered = posts.filter((post) => !post.data.draft).sort((a, b) => b.data.date - a.data.date);
 	return rss({
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
@@ -12,7 +12,7 @@ export async function GET(context) {
 		items: filtered.map((post) => ({
 			title: post.data.title,
 			pubDate: post.data.date,
-			link: `/blog/${post.data.slug}/`,
+			link: `/blog/${post.slug}/`,
 		})),
 	});
 }

@@ -1,7 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
-import { ViewTransitions } from "astro:transitions";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -30,9 +29,8 @@ const { Content } = await post.render();
 ---
 
 <BlogPost transition:persist {...post.data} id={post.id} slug={post.slug}>
-  <ViewTransitions slot="head" />
   <Content />
-  <section class="flex flex-col justify-between md:flex-row">
+  <section class="flex flex-col gap-4 justify-between md:flex-row">
     {
       prev ? (
         <a

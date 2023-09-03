@@ -18,8 +18,7 @@ const posts = (await getCollection("blog"))
   description="Some random things i've learned and want to share"
   transition:persist
 >
-  <ViewTransitions slot="head" />
-  <main class="container max-w-4xl mx-auto mt-4">
+  <main class="container lg:max-w-4xl mx-auto mt-4">
     <section>
       <ul class="grid grid-flow-row grid-cols-12 gap-4">
         {
@@ -38,12 +37,16 @@ const posts = (await getCollection("blog"))
               <a class="flex flex-col gap-4" href={`/blog/${post.slug}/`}>
                 {post.data.preview ? (
                   <Image
+                    src={post.data.preview}
                     class="rounded-xl"
                     transition:name={`preview-${post.slug}`}
-                    width={896}
-                    height={360}
-                    src={post.data.preview}
-                    alt=""
+                    width={index === 0 ? 896 : 408}
+                    height={index === 0 ? 360 : 202}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    sizes={
+                      "(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
+                    }
+                    alt="preview image of the blog post"
                   />
                 ) : null}
                 <h4 class="text-2xl font-bold text-stone-800">

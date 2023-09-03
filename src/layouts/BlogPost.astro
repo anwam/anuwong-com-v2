@@ -14,9 +14,13 @@ const { title, description, date, updatedDate, preview, id, slug } =
   Astro.props;
 ---
 
-<BaseLayout title={`${title} | ${SITE_TITLE}`} description={description}>
+<BaseLayout
+  title={`${title} | ${SITE_TITLE}`}
+  description={description}
+  imageUrl={preview?.src}
+>
   <slot name="head" />
-  <main class="container max-w-4xl mx-auto mt-4 bg-stone-100 rounded-2xl">
+  <main class="container lg:max-w-4xl mx-auto mt-4 bg-stone-100 rounded-2xl">
     <article class="p-4 prose prose-stone max-w-none">
       {
         preview && (
@@ -25,6 +29,7 @@ const { title, description, date, updatedDate, preview, id, slug } =
             transition:name={`preview-${slug}`}
             width={1020}
             height={510}
+            sizes="(min-width: 1024px)  864px, (min-width: 768px) 648px, 100vw"
             src={preview}
             alt=""
           />

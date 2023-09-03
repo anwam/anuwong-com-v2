@@ -26,5 +26,20 @@ const { title, description, imageUrl } = Astro.props;
     <Header transition:persist />
     <slot />
     <Footer transition:persist />
+    <slot name="scripts" />
+
+    <!-- Google Tag Manager -->
+    <script
+      is:global
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-W4ZZRMVS89"></script>
+    <script is:global type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-W4ZZRMVS89");
+    </script>
   </body>
 </html>
