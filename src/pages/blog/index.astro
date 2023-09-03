@@ -1,111 +1,69 @@
 ---
-import BaseHead from '../../components/BaseHead.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
-import { getCollection } from 'astro:content';
-import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection } from "astro:content";
+import FormattedDate from "../../components/FormattedDate.astro";
+import { Image } from "astro:assets";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { ViewTransitions } from "astro:transitions";
+import { SITE_TITLE } from "../../consts";
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
+const title = `Blogs | ${SITE_TITLE}`;
+
+const posts = (await getCollection("blog"))
+  .filter((blog) => !blog.data.draft)
+  .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf());
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.slug}/`}>
-									<img width={720} height={360} src={post.data.heroImage} alt="" />
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout
+  title={title}
+  description="Some random things i've learned and want to share"
+  transition:persist
+>
+  <ViewTransitions slot="head" />
+  <main class="container max-w-4xl mx-auto mt-4">
+    <section>
+      <ul class="grid grid-flow-row grid-cols-12 gap-4">
+        {
+          posts.map((post, index) => (
+            <li
+              class:list={[
+                "bg-stone-100",
+                "jusitfy-center",
+                "items-center",
+                "p-4",
+                "rounded-2xl",
+                { "col-span-12": index === 0 },
+                { "col-span-12 md:col-span-6": index !== 0 },
+              ]}
+            >
+              <a class="flex flex-col gap-4" href={`/blog/${post.slug}/`}>
+                {post.data.preview ? (
+                  <Image
+                    class="rounded-xl"
+                    transition:name={`preview-${post.slug}`}
+                    width={896}
+                    height={360}
+                    src={post.data.preview}
+                    alt=""
+                  />
+                ) : null}
+                <h4 class="text-2xl font-bold text-stone-800">
+                  {post.data.title}
+                </h4>
+                <p class="text-stone-700">{post.data.description}</p>
+                <ul class="flex flex-row gap-2 flex-wrap">
+                  {post.data.tags &&
+                    post.data.tags.map((tag) => (
+                      <li class="px-4 py-1 text-sm rounded-full text-stone-100 bg-stone-600">
+                        {tag}
+                      </li>
+                    ))}
+                </ul>
+                <FormattedDate date={post.data.date} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,50 +1,59 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = `Home | ${SITE_TITLE}`;
+
+const hobbies = [
+  "📖 Reading",
+  "🎧 Music",
+  "🧑🏽‍💻 Coding",
+  "🎮 PlayStation",
+  "📸 Photography",
+  "🐈 Cat",
+];
+
+const projects: Array<string> = [];
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header title={SITE_TITLE} />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This
-				template serves as a lightweight, minimally-styled starting point for anyone looking to build
-				a personal website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/pages/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to <a href="https://docs.astro.build/"
-					>read the docs
-				</a> or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out <a
-					href="https://github.com/Charca/astro-blog-template"
-					>astro-blog-template
-				</a> by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<BaseLayout title={title} description={SITE_DESCRIPTION}>
+  <main class="container flex flex-col max-w-4xl gap-4 mx-auto mt-4">
+    <h1 class="text-xl font-bold text-stone-800">anuwong.com</h1>
+    <p class="text-stone-600">random things i've learned and loves to share!</p>
+
+    <section class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-600">
+      <h2 class="text-xl font-bold text-stone-800">Profile</h2>
+      <p>Anuwong Mongkudkornburee (Bill)</p>
+      <p>He/Him | Cat | Golang | ReactJS | NextJS | Tailwind CSS</p>
+      <p>True Digital Group, Bangkok, Thailand</p>
+      <h3 class="font-bold text-stone-700">Contact</h3>
+      <p>dev.anuwong@gmail.com</p>
+    </section>
+
+    <h2 class="text-xl font-bold text-stone-800">Projects</h2>
+    <ul>
+      {
+        projects.length > 0 ? (
+          projects.map((project) => <li>{project}</li>)
+        ) : (
+          <li class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-600">
+            Coming soon.
+          </li>
+        )
+      }
+    </ul>
+
+    <h2 class="text-xl font-bold text-stone-800">Hobbies</h2>
+    <ul class="grid grid-flow-row grid-cols-12 gap-4">
+      {
+        hobbies.map((hobby) => (
+          <li class="flex flex-col items-center justify-center col-span-4 p-4 shadow rounded-xl bg-stone-100 shadow-stone-600">
+            {hobby.split(" ").map((h) => (
+              <span>{h}</span>
+            ))}
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</BaseLayout>

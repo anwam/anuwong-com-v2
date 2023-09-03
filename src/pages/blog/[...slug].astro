@@ -1,20 +1,61 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import { type CollectionEntry, getCollection } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+import { ViewTransitions } from "astro:transitions";
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  const posts = await getCollection("blog");
+  return posts
+    .filter((post) => !post.data.draft)
+    .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
+    .map((post, index, postList) => {
+      return {
+        params: { slug: post.slug },
+        props: {
+          post,
+          next: postList[index + 1] ?? null,
+          prev: postList[index - 1] ?? null,
+        },
+      };
+    });
 }
-type Props = CollectionEntry<'blog'>;
+type Props = {
+  post: CollectionEntry<"blog">;
+  next: CollectionEntry<"blog"> | null;
+  prev: CollectionEntry<"blog"> | null;
+};
 
-const post = Astro.props;
+const { post, next, prev } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data}>
-	<Content />
+<BlogPost transition:persist {...post.data} id={post.id} slug={post.slug}>
+  <ViewTransitions slot="head" />
+  <Content />
+  <section class="flex flex-col justify-between md:flex-row">
+    {
+      prev ? (
+        <a
+          class="px-4 py-2 text-sm rounded shadow-sm bg-stone-600 text-stone-200"
+          href={`/blog/${prev.slug}`}
+        >
+          ← {prev.data.title}
+        </a>
+      ) : (
+        <div />
+      )
+    }
+    {
+      next ? (
+        <a
+          class="px-4 py-2 text-sm rounded shadow-sm bg-stone-600 text-stone-200"
+          href={`/blog/${next.slug}`}
+        >
+          {next.slug} →
+        </a>
+      ) : (
+        <div />
+      )
+    }
+  </section>
 </BlogPost>
