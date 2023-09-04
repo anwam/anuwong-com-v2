@@ -17,23 +17,28 @@ const posts = (await getCollection("blog"))
   description="A collection of blogs written by me."
   transition:persist
 >
-  <main class="container lg:max-w-4xl mx-auto mt-4">
+  <main class="container px-4 md:px-0 lg:max-w-4xl mx-auto mt-4">
     <section>
       <ul class="grid grid-flow-row grid-cols-12 gap-4">
         {
           posts.map((post, index) => (
             <li
               class:list={[
-                "bg-stone-100",
+                "bg-stone-100 hover:bg-stone-200",
                 "jusitfy-center",
                 "items-center",
+                "shadow shadow-stone-400",
                 "p-4",
                 "rounded-2xl",
+                "hover:scale-105 hover:z-10 transition-all",
                 { "col-span-12": index === 0 },
                 { "col-span-12 md:col-span-6": index !== 0 },
               ]}
             >
-              <a class="flex flex-col gap-4" href={`/blog/${post.slug}/`}>
+              <a
+                class="flex flex-col gap-4 w-full h-full"
+                href={`/blog/${post.slug}/`}
+              >
                 {post.data.preview ? (
                   <Image
                     src={post.data.preview}
