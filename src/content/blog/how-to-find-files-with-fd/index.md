@@ -79,13 +79,13 @@ fd -t d node_modules
 
 -t ก็คือ type ส่วน d ก็คือ directory ครับ
 
-หรือถ้าจะให้หาทั้ง NODE_MODULES และ node_modules ก็ใช้ -I ครับ
+แต่ถ้าเราไปหา node_modules ใน directory ที่มี .gitignore มันอาจจะหาไม่เจอนะ เพราะ fd จะ ignore ไฟล์ .gitignore อัตโนมัติ และส่วนใหญ่ .gitignore เราจะ ignore node_modules กันอยู่แล้ว ถ้าเราต้องการให้หาทุกไฟล์ก็ใส่ -I ไปด้วย
 
 ```bash
 fd -t d -I node_modules
 ```
 
--I ก็คือ insensitive คือไม่สนใจตัวพิมพ์เล็กใหญ่นั่นเอง
+-I หมายถึง no ignore ก็คือไม่สนใจ .gitignore นั่นเอง
 
 หรือจะหาไฟล์ด้วย regexp pattern ก็ได้นะ! เช่น ต้องการไฟล์ .docx ที่มีตัวเลขอยู่ในชื่อไฟล์
 
