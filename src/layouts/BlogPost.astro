@@ -20,8 +20,9 @@ const { title, description, date, updatedDate, preview, id, slug } =
   imageUrl={preview?.src}
 >
   <slot name="head" />
-  <main class="container lg:max-w-4xl mx-auto">
+  <main transition:name="main" class="container lg:max-w-4xl mx-auto">
     <article
+      transition:name={`article-${slug}`}
       class="p-4 prose prose-stone max-w-none md:mt-4 bg-stone-100 md:rounded-2xl"
     >
       {
@@ -33,11 +34,11 @@ const { title, description, date, updatedDate, preview, id, slug } =
             height={510}
             sizes="(min-width: 1024px)  864px, (min-width: 768px) 648px, 100vw"
             src={preview}
-            alt=""
+            alt={`${slug} preview`}
           />
         )
       }
-      <h1>{title}</h1>
+      <h1 transition:name={`title-${slug}`}>{title}</h1>
       <FormattedDate
         class="px-2 py-1 rounded-full text-stone-100 bg-stone-600"
         date={date}

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
 
 const title = `Home | ${SITE_TITLE}`;
 
@@ -24,6 +25,7 @@ const posts = (await getCollection("blog"))
 
 <BaseLayout title={title} description={SITE_DESCRIPTION}>
   <main
+    transition:name="main"
     class="container px-4 md:px-0 flex flex-col lg:max-w-4xl gap-4 mx-auto mt-4"
   >
     <h1 class="text-xl font-bold text-stone-800">{SITE_TITLE}</h1>
@@ -52,9 +54,23 @@ const posts = (await getCollection("blog"))
           </div>
           <ul class="grid md:grid-cols-3 grid-flow-row gap-4">
             {posts.map((post) => (
-              <li class="bg-stone-100 p-4 shadow rounded-xl shadow-stone-600 hover:shadow-stone-700 hover:bg-stone-200 transition-all hover:scale-105">
+              <li class="flex flex-row gap-4 bg-stone-100 p-4 shadow rounded-xl shadow-stone-600 hover:shadow-stone-700 hover:bg-stone-200 transition-all">
+                {post.data.preview && (
+                  <Image
+                    transition:name={`preview-${post.slug}`}
+                    src={post.data.preview}
+                    width={128}
+                    quality={10}
+                    height={128}
+                    class="w-[64px] h-auto object-contain bg-stone-50 border border-stone-300 rounded-lg"
+                    alt={`preview of ${post.slug}`}
+                  />
+                )}
+
                 <a href={`/blog/${post.slug}`}>
-                  <h3>{post.data.title}</h3>
+                  <h3 transition:name={`title-${post.slug}`}>
+                    {post.data.title}
+                  </h3>
                 </a>
               </li>
             ))}

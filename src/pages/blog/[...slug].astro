@@ -28,7 +28,7 @@ const { post, next, prev } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost transition:persist {...post.data} id={post.id} slug={post.slug}>
+<BlogPost {...post.data} id={post.id} slug={post.slug}>
   <Content />
   <section class="flex flex-col gap-4 justify-between md:flex-row">
     {

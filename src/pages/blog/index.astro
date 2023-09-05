@@ -4,6 +4,7 @@ import FormattedDate from "../../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE_TITLE } from "../../consts";
+import { fade, slide } from "astro:transitions";
 
 const title = `Blogs | ${SITE_TITLE}`;
 
@@ -17,7 +18,10 @@ const posts = (await getCollection("blog"))
   description="A collection of blogs written by me."
   transition:persist
 >
-  <main class="container px-4 md:px-0 lg:max-w-4xl mx-auto mt-4">
+  <main
+    transition:name="main"
+    class="container px-4 md:px-0 lg:max-w-4xl mx-auto mt-4"
+  >
     <section>
       <ul class="grid grid-flow-row grid-cols-12 gap-4">
         {
@@ -30,7 +34,7 @@ const posts = (await getCollection("blog"))
                 "shadow shadow-stone-400",
                 "p-4",
                 "rounded-2xl",
-                "hover:scale-105 hover:z-10 transition-all",
+                "hover:shadow-xl transition-all",
                 { "col-span-12": index === 0 },
                 { "col-span-12 md:col-span-6": index !== 0 },
               ]}
@@ -39,7 +43,7 @@ const posts = (await getCollection("blog"))
                 class="flex flex-col gap-4 w-full h-full"
                 href={`/blog/${post.slug}/`}
               >
-                {post.data.preview ? (
+                {post.data.preview && (
                   <Image
                     src={post.data.preview}
                     class="rounded-xl"
@@ -50,10 +54,13 @@ const posts = (await getCollection("blog"))
                     sizes={
                       "(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
                     }
-                    alt="preview image of the blog post"
+                    alt={`${post.slug} preview`}
                   />
-                ) : null}
-                <h4 class="text-2xl font-bold text-stone-800">
+                )}
+                <h4
+                  transition:name={`title-${post.slug}`}
+                  class="text-2xl font-bold text-stone-800"
+                >
                   {post.data.title}
                 </h4>
                 <p class="text-stone-700">{post.data.description}</p>
