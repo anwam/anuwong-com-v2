@@ -27,6 +27,7 @@ const posts = (await getCollection("blog"))
         {
           posts.map((post, index) => (
             <li
+              transition:name={`article-${post.slug}`}
               class:list={[
                 "bg-stone-100 hover:bg-stone-200",
                 "jusitfy-center",
