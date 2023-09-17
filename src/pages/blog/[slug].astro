@@ -57,3 +57,40 @@ const { Content } = await post.render();
     }
   </section>
 </BlogPost>
+
+<script>
+  function putPageView(page: string) {
+    fetch(`/api/pages/${page}/views`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        console.debug("count", json.count);
+        console.debug("slug", json.slug);
+      });
+  }
+
+  const pathname =
+    window.location.pathname
+      .replace(/^\//, "")
+      .replace(/\/$/, "")
+      .replace(/\//g, "-") || "home";
+  console.debug(pathname);
+  document.addEventListener("astro:page-load", () => {
+    putPageView(pathname);
+  });
+
+  document.addEventListener("astro:after-swap", () => {
+    const currentPath =
+      window.location.pathname
+        .replace(/^\//, "")
+        .replace(/\/$/, "")
+        .replace(/\//g, "-") || "home";
+    putPageView(currentPath);
+  });
+</script>
