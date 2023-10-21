@@ -81,6 +81,8 @@ export const env = envSchema.parse(process.env);
 ```js
 // index.js
 
+import { env } from "./env.js";
+
 function main() {
   console.log("Hello, this is ", env.APP_NAME, " running on port ", env.PORT);
 }
