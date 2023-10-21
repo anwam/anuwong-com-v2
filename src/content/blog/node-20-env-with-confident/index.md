@@ -65,7 +65,7 @@ import { z } from "zod";
  */
 export const envSchema = z.object({
   APP_NAME: z.string(),
-  PORT: z.number(),
+  PORT: z.string().regex(/^\d+$/).transform(Number),
 });
 
 /**
