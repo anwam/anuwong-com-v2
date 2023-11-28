@@ -29,11 +29,10 @@ const { title, description, date, updatedDate, preview, id, slug } =
           <Picture
             class="rounded-xl w-auto h-auto mx-auto"
             loading="eager"
-            decoding="async"
             sizes="(min-width: 1024px)  864px, (min-width: 768px) 648px, 100vw"
             src={preview}
             alt={`${slug} preview`}
-            formats={["webp", "avif", "jpeg"]}
+            formats={["webp", "jpg"]}
           />
         )
       }
