@@ -1,7 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
-import { Image } from "astro:assets";
+import { Picture } from "astro:assets";
 import BaseLayout from "./BaseLayout.astro";
 import { SITE_TITLE } from "../consts";
 
@@ -20,25 +20,24 @@ const { title, description, date, updatedDate, preview, id, slug } =
   imageUrl={preview?.src}
 >
   <slot name="head" />
-  <main transition:name="main" class="container lg:max-w-4xl mx-auto">
+  <main class="container lg:max-w-4xl mx-auto">
     <article
-      transition:name={`article-${slug}`}
       class="p-4 prose prose-stone max-w-none md:mt-4 bg-stone-100 md:rounded-2xl"
     >
       {
         preview && (
-          <Image
-            class="rounded-xl"
-            transition:name={`preview-${slug}`}
-            width={1020}
-            height={510}
+          <Picture
+            class="rounded-xl w-auto h-auto mx-auto"
+            loading="eager"
+            decoding="async"
             sizes="(min-width: 1024px)  864px, (min-width: 768px) 648px, 100vw"
             src={preview}
             alt={`${slug} preview`}
+            formats={["webp", "avif", "jpeg"]}
           />
         )
       }
-      <h1 transition:name={`title-${slug}`}>{title}</h1>
+      <h1>{title}</h1>
       <FormattedDate
         class="px-2 py-1 rounded-full text-stone-100 bg-stone-600"
         date={date}

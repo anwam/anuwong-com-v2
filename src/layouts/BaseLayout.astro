@@ -27,9 +27,9 @@ const { title, description, imageUrl } = Astro.props;
     <slot name="head" />
   </head>
   <body class="bg-stone-300">
-    <Header transition:persist />
+    <Header />
     <slot />
-    <Footer transition:persist />
+    <Footer />
     <slot name="scripts" />
 
     <!-- Google Tag Manager -->

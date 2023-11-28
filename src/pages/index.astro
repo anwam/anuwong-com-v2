@@ -25,7 +25,6 @@ const posts = (await getCollection("blog"))
 
 <BaseLayout title={title} description={SITE_DESCRIPTION}>
   <main
-    transition:name="main"
     class="container px-4 md:px-0 flex flex-col lg:max-w-4xl gap-4 mx-auto mt-4"
   >
     <h1 class="text-center text-xl font-bold text-stone-800">{SITE_TITLE}</h1>
@@ -56,17 +55,13 @@ const posts = (await getCollection("blog"))
           </div>
           <ul class="grid md:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-4">
             {posts.map((post) => (
-              <li
-                transition:name={`article-${post.slug}`}
-                class="overflow-hidden bg-stone-100 shadow rounded-xl shadow-stone-600 hover:shadow-stone-700 hover:bg-stone-200 transition-all"
-              >
+              <li class="overflow-hidden bg-stone-100 shadow rounded-xl shadow-stone-600 hover:shadow-stone-700 hover:bg-stone-200 transition-all">
                 <a
                   class="flex flex-row items-center gap-4 p-4 h-full"
                   href={`/blog/${post.slug}`}
                 >
                   {post.data.preview && (
                     <Image
-                      transition:name={`preview-${post.slug}`}
                       src={post.data.preview}
                       width={64}
                       height={64}
@@ -75,9 +70,7 @@ const posts = (await getCollection("blog"))
                     />
                   )}
 
-                  <h3 transition:name={`title-${post.slug}`}>
-                    {post.data.title}
-                  </h3>
+                  <h3>{post.data.title}</h3>
                 </a>
               </li>
             ))}
