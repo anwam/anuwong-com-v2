@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
+import Timeline from "../components/Timeline.astro";
 
 const title = `Home | ${SITE_TITLE}`;
 
@@ -35,12 +36,16 @@ const posts = (await getCollection("blog"))
     <section class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
       <h2 class="text-xl font-bold text-stone-800">Profile</h2>
       <p>Anuwong Mongkudkornburee (Bill)</p>
-      <p>He/Him | Cat | Golang | ReactJS | NextJS | Tailwind CSS</p>
-      <p>True Digital Group, Bangkok, Thailand</p>
+      <p>🐈 Cat Person</p>
+      <p>Golang • ReactJS • NextJS • Tailwind CSS</p>
+      <p>True Digital Group, Bangkok, Thailand.</p>
       <h3 class="font-bold text-stone-700">Contact</h3>
       <p>dev.anuwong@gmail.com</p>
     </section>
-
+    <section class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
+      <h2 class="text-xl font-bold text-stone-800">Work Experience</h2>
+      <Timeline />
+    </section>
     {
       posts.length > 0 && (
         <>

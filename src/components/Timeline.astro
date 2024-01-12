@@ -1,0 +1,74 @@
+---
+type Experience = {
+  time: string;
+  workplace: string;
+  position: string;
+  description: string;
+  present?: boolean;
+};
+const experiences: Array<Experience> = [
+  {
+    time: "Jul 2017 - Apr 2019",
+    workplace: "The Dollarsign Co.,Ltd.",
+    position: "Web Developer (Backend) ",
+    description: `- Use React and NextJS to build arts marketplace web application.
+  - Build backend services with Node.js and Express.js`,
+  },
+  {
+    time: "Jun 2020 - Sep 2022",
+    workplace: "The Dollarsign Co.,Ltd.",
+    position: "Software Engineer",
+    description: `- Develop, maintain, and design various systems.
+  - Use NestJS to develop microservices for backend system.
+  - Use RabbitMQ as message broker for microservices communication.
+  - Familiar with containerization with docker.
+  - Apply TDD, Test-driven development, in working process.
+    `,
+  },
+  {
+    time: "Oct 2022 - Present",
+    workplace: "True Digital Group",
+    position: "Senior Programmer - TrueID",
+    description: `Senior Programmer at TrueID, a Thailand-based streaming platform
+- Develop and maintain microservices of subscription and payment platforms.
+- Improve code readability and performance confidently with unit testing for complex functions.
+- Eliminate code smells from the legacy systems using SonarQube to report smells and anti-patterns.
+- Improve the products page by applying the Incremental Static Regeneration (ISR) from Next.js to reduce JavaScript execution time on the first load and keep the product data fresh.
+- Keep confidently developing experience with unit testing for high-complexity functional requirements.
+- Behaviour Driven Development for B2B integration with Godog and Gherkin.
+- Performance testing with k6.
+- Analyze code quality with sonar cloud and bitbucket pipeline.
+`,
+    present: true,
+  },
+];
+---
+
+<ol class="mt-2 relative border-s border-stone-700">
+  {
+    experiences.map((exp) => (
+      <li class="ms-4">
+        <div class="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 border border-stone-900 bg-stone-700" />
+        <time
+          class:list={[
+            "text-sm font-normal leading-none inline-block",
+            {
+              "bg-stone-200 p-2 border border-stone-300 rounded-lg mb-2 text-stone-700":
+                exp.present,
+            },
+            {
+              "mb-1 text-stone-500": !exp.present,
+            },
+          ]}
+        >
+          {exp.time}
+        </time>
+        <h3 class="text-lg font-semibold text-stone-900">{exp.position}</h3>
+        <p class="text-base font-normal text-stone-500">{exp.workplace}</p>
+        <p class="mb-4 text-sm font-normal text-stone-600 whitespace-pre-line">
+          {exp.description}
+        </p>
+      </li>
+    ))
+  }
+</ol>
