@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.4](https://github.com/anwam/anuwong-com-v2/compare/0.0.3...0.0.4) (2024-01-12)
+
+
+### Features
+
+* add work experience in home page ([c5626b8](https://github.com/anwam/anuwong-com-v2/commit/c5626b8e379736f535670a1085ee7afbe08857dc))
+
 ### [0.0.3](https://github.com/anwam/anuwong-com-v2/compare/0.0.2...0.0.3) (2023-11-28)
 
 
