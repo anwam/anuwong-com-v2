@@ -6,14 +6,9 @@ preview: ./optimizt.png
 draft: false
 tags:
   - optimization
-  - image-compression
+  - compression
   - performance
   - web
-categories:
-  - web
-  - optimization
-  - image-compression
-  - performance
 lastmod: 2023-08-21T03:39:31.317Z
 ---
 

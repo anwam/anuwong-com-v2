@@ -1,9 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
-import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE_TITLE } from "../../consts";
+import BlogItem from "@/modules/blog/components/BlogItem.astro";
 
 const title = `Blogs | ${SITE_TITLE}`;
 
@@ -18,51 +17,7 @@ const posts = (await getCollection("blog"))
       <ul class="grid grid-flow-row grid-cols-12 gap-4">
         {
           posts.map((post, index) => (
-            <li
-              class:list={[
-                "bg-stone-100 hover:bg-stone-200",
-                "jusitfy-center",
-                "items-center",
-                "shadow shadow-stone-400",
-                "p-4",
-                "rounded-2xl",
-                "hover:shadow-xl transition-all",
-                { "col-span-12": index === 0 },
-                { "col-span-12 md:col-span-6": index !== 0 },
-              ]}
-            >
-              <a
-                class="flex flex-col gap-4 w-full h-full"
-                href={`/blog/${post.slug}/`}
-              >
-                {post.data.preview && (
-                  <Image
-                    src={post.data.preview}
-                    class="rounded-xl"
-                    width={index === 0 ? 896 : 408}
-                    height={index === 0 ? 360 : 202}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    sizes={
-                      "(min-width: 1024px) 25vw, (min-width: 768px) 50vw, 100vw"
-                    }
-                    alt={`${post.slug} preview`}
-                  />
-                )}
-                <h4 class="text-2xl font-bold text-stone-800">
-                  {post.data.title}
-                </h4>
-                <p class="text-stone-700">{post.data.description}</p>
-                <ul class="flex flex-row gap-2 flex-wrap">
-                  {post.data.tags &&
-                    post.data.tags.map((tag) => (
-                      <li class="px-4 py-1 text-sm rounded-full text-stone-100 bg-stone-600">
-                        {tag}
-                      </li>
-                    ))}
-                </ul>
-                <FormattedDate date={post.data.date} />
-              </a>
-            </li>
+            <BlogItem isFirst={index === 0} post={post} />
           ))
         }
       </ul>

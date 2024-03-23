@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  posts: CollectionEntry<"blog">[];
+};
+
+const { posts } = Astro.props;
+---
+
+{
+  posts.length > 0 && (
+    <>
+      <div class="flex items-center gap-4 justify-between">
+        <h2 class="w-fit text-xl font-bold text-stone-800">Blogs</h2>
+        <a
+          class="px-2 py-1 bg-stone-800 text-stone-100 inline-block w-fit rounded"
+          href="/blog"
+        >
+          <span>ดูทั้งหมด</span>
+        </a>
+      </div>
+      <ul class="grid md:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-4">
+        {posts.map((post) => (
+          <li class="overflow-hidden bg-stone-100 shadow rounded-xl shadow-stone-600 hover:shadow-stone-700 hover:bg-stone-200 transition-all">
+            <a
+              class="flex flex-row items-center gap-4 p-4 h-full"
+              href={`/blog/${post.slug}`}
+            >
+              {post.data.preview && (
+                <Image
+                  src={post.data.preview}
+                  width={64}
+                  height={64}
+                  class="p-1 aspect-square w-[64px] h-[64px] object-contain bg-stone-50 border border-stone-300 rounded-lg"
+                  alt={`preview of ${post.slug}`}
+                />
+              )}
+
+              <h3>{post.data.title}</h3>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </>
+  )
+}

@@ -3,7 +3,9 @@ import { getCollection } from "astro:content";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import Timeline from "../components/Timeline.astro";
+import Timeline from "@/components/Timeline.astro";
+import Profile from "@/modules/home/components/Profile.astro";
+import BlogSection from "@/modules/home/components/BlogSection.astro";
 
 const title = `Home | ${SITE_TITLE}`;
 
@@ -18,8 +20,7 @@ const hobbies = [
 
 const projects: Array<string> = [];
 
-const posts = (await getCollection("blog"))
-  .filter((blog) => !blog.data.draft)
+const posts = (await getCollection("blog", (blog) => !blog.data.draft))
   .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
   .slice(0, 6);
 ---
@@ -28,61 +29,23 @@ const posts = (await getCollection("blog"))
   <main
     class="container px-4 md:px-0 flex flex-col lg:max-w-4xl gap-4 mx-auto mt-4"
   >
-    <h1 class="text-center text-xl font-bold text-stone-800">{SITE_TITLE}</h1>
-    <p class="text-stone-600 text-center text-xl md:text-4xl font-sans">
-      {SITE_DESCRIPTION}
-    </p>
+    <h1 class="sr-only">{SITE_TITLE}</h1>
+    <BlogSection posts={posts} />
 
-    <section class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
-      <h2 class="text-xl font-bold text-stone-800">Profile</h2>
-      <p>Anuwong Mongkudkornburee (Bill)</p>
-      <p>🐈 Cat Person</p>
-      <p>Golang • ReactJS • NextJS • Tailwind CSS</p>
-      <p>True Digital Group, Bangkok, Thailand.</p>
-      <h3 class="font-bold text-stone-700">Contact</h3>
-      <p>dev.anuwong@gmail.com</p>
-    </section>
-    <section class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
-      <h2 class="text-xl font-bold text-stone-800">Work Experience</h2>
-      <Timeline />
-    </section>
-    {
-      posts.length > 0 && (
-        <>
-          <div class="flex flex-row gap-4 justify-between">
-            <h2 class="w-fit text-xl font-bold text-stone-800">Blogs</h2>
-            <a
-              class="px-2 py-1 bg-stone-800 text-stone-100 inline-block w-fit rounded"
-              href="/blog"
-            >
-              <span>ดูทั้งหมด</span>
-            </a>
-          </div>
-          <ul class="grid md:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-4">
-            {posts.map((post) => (
-              <li class="overflow-hidden bg-stone-100 shadow rounded-xl shadow-stone-600 hover:shadow-stone-700 hover:bg-stone-200 transition-all">
-                <a
-                  class="flex flex-row items-center gap-4 p-4 h-full"
-                  href={`/blog/${post.slug}`}
-                >
-                  {post.data.preview && (
-                    <Image
-                      src={post.data.preview}
-                      width={64}
-                      height={64}
-                      class="p-1 aspect-square w-[64px] h-[64px] object-contain bg-stone-50 border border-stone-300 rounded-lg"
-                      alt={`preview of ${post.slug}`}
-                    />
-                  )}
-
-                  <h3>{post.data.title}</h3>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )
-    }
+    <div class="border-b border-stone-200"></div>
+    <div class="grid grid-flow-row grid-cols-5 gap-4">
+      <section
+        class="col-span-5 lg:col-span-2 p-4 h-fit shadow rounded-xl bg-stone-100 shadow-stone-400"
+      >
+        <Profile />
+      </section>
+      <section
+        class="col-span-5 lg:col-span-3 p-4 shadow rounded-xl bg-stone-100 shadow-stone-400"
+      >
+        <h2 class="text-xl font-bold text-stone-800">Work Experience</h2>
+        <Timeline />
+      </section>
+    </div>
 
     <h2 class="text-xl font-bold text-stone-800">Projects</h2>
     <ul>

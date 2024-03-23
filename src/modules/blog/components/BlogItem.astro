@@ -1,0 +1,71 @@
+---
+import FormattedDate from "@/components/FormattedDate.astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
+
+type Props = {
+  isFirst?: boolean;
+  post: CollectionEntry<"blog">;
+};
+const { isFirst, post } = Astro.props;
+---
+
+<li
+  class:list={[
+    "bg-stone-100 hover:bg-stone-200",
+    "jusitfy-center",
+    "items-center",
+    "shadow shadow-stone-400",
+    "p-4",
+    "rounded-2xl",
+    "w-full max-w-full",
+    "h-full max-h-48",
+    "hover:shadow-xl transition-all",
+    { "col-span-12": isFirst },
+    { "col-span-12 md:col-span-6": !isFirst },
+  ]}
+>
+  <a
+    class="flex flex-row items-center gap-x-4 max-w-full w-full h-full max-h-full relative"
+    href={`/blog/${post.slug}/`}
+  >
+    {
+      post.data.preview && (
+        <Image
+          src={post.data.preview}
+          width={isFirst ? 128 : 72}
+          height={isFirst ? 128 : 72}
+          class:list={[
+            {
+              "md:w-[128px] md:h-[128px]": isFirst,
+            },
+          ]}
+          class="w-[72px] h-[72px]  border rounded-xl aspect-square object-contain bg-white"
+          loading={isFirst ? "eager" : "lazy"}
+          alt={`${post.slug} preview`}
+        />
+      )
+    }
+    <article class="self-start relative h-auto max-h-full max-w-full w-3/4">
+      <h4 class="font-bold text-stone-800">
+        {post.data.title}
+      </h4>
+      <FormattedDate date={post.data.date} />
+      <p class="text-stone-700 text-sm md:text-base line-clamp-2">
+        {post.data.description}
+      </p>
+      <ul class="flex flex-row gap-x-1 gap-y-1 mt-2 text-xs flex-wrap">
+        {
+          post.data.tags &&
+            post.data.tags
+              .slice(0, 3)
+              .map((tag) => (
+                <li class="px-2 py-1 rounded-full text-stone-100 bg-stone-600">
+                  {tag}
+                </li>
+              ))
+        }
+      </ul>
+    </article>
+  </a>
+</li>
