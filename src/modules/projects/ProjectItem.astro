@@ -12,22 +12,20 @@ type Props = {
 const { title, content, thumbnail, url } = Astro.props;
 ---
 
-<li class="p-4 bg-stone-100 rounded-xl shadow border">
-  <h3 class="text-lg font-bold mb-4">{title}</h3>
-  <Image
-    src={thumbnail}
-    alt={title}
-    class="w-full h-64 object-cover object-top rounded-lg"
-  />
-  <p class="mt-2 whitespace-pre-line">{content}</p>
-  {
-    url && (
-      <a
-        href={url}
-        class="inline-block px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
-      >
-        <span class="text-sm">View</span>
-      </a>
-    )
-  }
-</li>
+<h3 class="text-lg font-bold mb-4">{title}</h3>
+<Image
+  src={thumbnail}
+  alt={title}
+  class="w-full h-64 object-cover object-top rounded-lg"
+/>
+<p class="mt-2 whitespace-pre-line">{content}</p>
+{
+  url && (
+    <a
+      href={url}
+      class="inline-block px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+    >
+      <span class="text-sm">View</span>
+    </a>
+  )
+}

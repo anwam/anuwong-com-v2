@@ -67,12 +67,14 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
       {
         projects.length > 0 ? (
           projects.map((project) => (
-            <ProjectItem
-              title={project.title}
-              content={project.content}
-              thumbnail={project.thumbnail}
-              url={project.url}
-            />
+            <li class="p-4 col-span-3 md:col-span-1 bg-stone-100 rounded-xl shadow border">
+              <ProjectItem
+                title={project.title}
+                content={project.content}
+                thumbnail={project.thumbnail}
+                url={project.url}
+              />
+            </li>
           ))
         ) : (
           <li class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
