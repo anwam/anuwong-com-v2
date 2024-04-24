@@ -2,10 +2,12 @@
 import { getCollection } from "astro:content";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
 import Timeline from "@/components/Timeline.astro";
 import Profile from "@/modules/home/components/Profile.astro";
 import BlogSection from "@/modules/home/components/BlogSection.astro";
+import ProjectItem from "@/modules/projects/ProjectItem.astro";
+import Proeject1 from "@/assets/images/project-1.webp";
+import type { ImageMetadata } from "astro";
 
 const title = `Home | ${SITE_TITLE}`;
 
@@ -18,7 +20,20 @@ const hobbies = [
   "🐈 Cat",
 ];
 
-const projects: Array<string> = [];
+const projects: Array<{
+  title: string;
+  content: string;
+  thumbnail: ImageMetadata;
+  url?: string;
+}> = [
+  {
+    title: "Korakotmotors Website",
+    content: `A local car dealer website in Nakhon Ratchasima, Thailand. Built with Next.js and Tailwind CSS.
+      I am fully responsible for the design, development, and maintenance of the website. Powered by Strapi and Vercel`,
+    thumbnail: Proeject1,
+    url: "https://korakotmotors.com",
+  },
+];
 
 const posts = (await getCollection("blog", (blog) => !blog.data.draft))
   .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
@@ -48,10 +63,17 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
     </div>
 
     <h2 class="text-xl font-bold text-stone-800">Projects</h2>
-    <ul>
+    <ul class="grid grid-flow-row grid-cols-3 gap-4">
       {
         projects.length > 0 ? (
-          projects.map((project) => <li>{project}</li>)
+          projects.map((project) => (
+            <ProjectItem
+              title={project.title}
+              content={project.content}
+              thumbnail={project.thumbnail}
+              url={project.url}
+            />
+          ))
         ) : (
           <li class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
             Coming soon.
