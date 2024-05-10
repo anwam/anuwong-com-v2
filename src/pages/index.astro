@@ -28,8 +28,7 @@ const projects: Array<{
 }> = [
   {
     title: "Korakotmotors Website",
-    content: `A local car dealer website in Nakhon Ratchasima, Thailand. Built with Next.js and Tailwind CSS.
-      I am fully responsible for the design, development, and maintenance of the website. Powered by Strapi and Vercel`,
+    content: `Used car platform website.`,
     thumbnail: Proeject1,
     url: "https://korakotmotors.com",
   },
@@ -49,11 +48,36 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
 
     <div class="border-b border-stone-200"></div>
     <div class="grid grid-flow-row grid-cols-5 gap-4">
-      <section
-        class="col-span-5 lg:col-span-2 p-4 h-fit shadow rounded-xl bg-stone-100 shadow-stone-400"
-      >
-        <Profile />
-      </section>
+      <div class="flex flex-col gap-y-4 col-span-5 lg:col-span-2">
+        <section
+          class="p-4 h-fit shadow rounded-xl bg-stone-100 shadow-stone-400"
+        >
+          <Profile />
+        </section>
+        <ul
+          class="p-4 col-span-3 md:col-span-2 bg-stone-100 rounded-xl shadow border"
+        >
+          <h2 class="text-xl font-bold text-stone-800">Projects</h2>
+          {
+            projects.length > 0 ? (
+              projects.map((project) => (
+                <li class="my-3">
+                  <ProjectItem
+                    title={project.title}
+                    content={project.content}
+                    thumbnail={project.thumbnail}
+                    url={project.url}
+                  />
+                </li>
+              ))
+            ) : (
+              <li class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
+                Coming soon.
+              </li>
+            )
+          }
+        </ul>
+      </div>
       <section
         class="col-span-5 lg:col-span-3 p-4 shadow rounded-xl bg-stone-100 shadow-stone-400"
       >
@@ -63,26 +87,6 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
     </div>
 
     <h2 class="text-xl font-bold text-stone-800">Projects</h2>
-    <ul class="grid grid-flow-row grid-cols-3 gap-4">
-      {
-        projects.length > 0 ? (
-          projects.map((project) => (
-            <li class="p-4 col-span-3 md:col-span-2 bg-stone-100 rounded-xl shadow border">
-              <ProjectItem
-                title={project.title}
-                content={project.content}
-                thumbnail={project.thumbnail}
-                url={project.url}
-              />
-            </li>
-          ))
-        ) : (
-          <li class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
-            Coming soon.
-          </li>
-        )
-      }
-    </ul>
 
     <h2 class="text-xl font-bold text-stone-800">Hobbies</h2>
     <ul class="grid grid-flow-row grid-cols-12 gap-4">

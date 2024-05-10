@@ -26,7 +26,7 @@ const experiences: Array<Experience> = [
     `,
   },
   {
-    time: "Oct 2022 - Present",
+    time: "Oct 2022 - Apr 2024",
     workplace: "True Digital Group",
     position: "Senior Programmer - TrueID",
     description: `Senior Programmer at TrueID, a Thailand-based streaming platform
@@ -39,6 +39,13 @@ const experiences: Array<Experience> = [
 - Performance testing with k6.
 - Analyze code quality with sonar cloud and bitbucket pipeline.
 `,
+    present: false,
+  },
+  {
+    time: "May 2024 - Present",
+    workplace: "NocNoc",
+    position: "Software Engineer - Full Stack",
+    description: "Full Stack Software Engineer in the Shopping Experience Team",
     present: true,
   },
 ];
@@ -48,10 +55,10 @@ const experiences: Array<Experience> = [
   {
     experiences.reverse().map((exp) => (
       <li class="ms-4">
-        <div class="absolute w-3 h-3 rounded-full mt-1.5 -start-1.5 border border-stone-900 bg-stone-700" />
+        <div class="absolute w-2 h-2 rounded-full mt-[10px] -start-1 border border-stone-900 bg-stone-700" />
         <time
           class:list={[
-            "text-sm font-normal leading-none inline-block",
+            "text-xs font-normal leading-none inline-block",
             {
               "bg-stone-200 p-2 border border-stone-300 rounded-lg mb-2 text-stone-700":
                 exp.present,
@@ -64,7 +71,7 @@ const experiences: Array<Experience> = [
           {exp.time}
         </time>
         <h3 class="text-lg font-semibold text-stone-900">{exp.position}</h3>
-        <p class="text-base font-normal text-stone-500">{exp.workplace}</p>
+        <p class="text-base font-normal text-stone-500">at {exp.workplace}</p>
         <p class="mb-4 text-sm font-normal text-stone-600 whitespace-pre-line">
           {exp.description}
         </p>
