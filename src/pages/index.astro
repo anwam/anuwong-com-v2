@@ -8,6 +8,14 @@ import BlogSection from "@/modules/home/components/BlogSection.astro";
 import ProjectItem from "@/modules/projects/ProjectItem.astro";
 import Proeject1 from "@/assets/images/project-1.webp";
 import type { ImageMetadata } from "astro";
+import ReactLogo from "@/assets/images/react.svg";
+import NextLogo from "@/assets/images/nextjs.svg";
+import GolangLogo from "@/assets/images/golang.jpg";
+import TailwindCSSLogo from "@/assets/images/tailwindcss.svg";
+import VercelLogo from "@/assets/images/vercel.png";
+import StrapiLogo from "@/assets/images/strapi.jpg";
+import FirebaseLogo from "@/assets/images/firebase.svg";
+import CloudflareLogo from "@/assets/images/cloudflare.png";
 
 const title = `Home | ${SITE_TITLE}`;
 
@@ -86,7 +94,116 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
       </section>
     </div>
 
-    <h2 class="text-xl font-bold text-stone-800">Projects</h2>
+    <h2 class="text-xl font-bold text-stone-800">Tech Stack</h2>
+    <section
+      class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]"
+    >
+      {
+        Array(2)
+          .fill(1)
+          .map((_, i) => (
+            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-2 [&_img]:max-w-none animate-infinite-scroll">
+              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+                <img
+                  src={ReactLogo.src}
+                  width={ReactLogo.width}
+                  height={ReactLogo.height}
+                  alt="React.js"
+                  class="w-24 h-auto"
+                />
+                React.js
+              </li>
+              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+                <img
+                  src={NextLogo.src}
+                  width={NextLogo.width}
+                  height={NextLogo.height}
+                  alt="Next.js"
+                  class="w-24 h-auto"
+                />
+              </li>
+              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+                <img
+                  src={GolangLogo.src}
+                  width={GolangLogo.width}
+                  height={GolangLogo.height}
+                  alt="Go (Golang)"
+                  class="w-24 h-auto shadow rounded-xl"
+                />
+              </li>
+              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+                <img
+                  src={TailwindCSSLogo.src}
+                  width={TailwindCSSLogo.width}
+                  height={TailwindCSSLogo.height}
+                  alt="Tailwind CSS"
+                  class="w-24 h-auto"
+                />
+              </li>
+              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+                <img
+                  src={VercelLogo.src}
+                  width={VercelLogo.width}
+                  height={VercelLogo.height}
+                  alt="Vercel"
+                  class="w-24 h-auto"
+                />
+              </li>
+              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+                <img
+                  src={StrapiLogo.src}
+                  width={StrapiLogo.width}
+                  height={StrapiLogo.height}
+                  alt="Strapi"
+                  class="w-24 h-auto"
+                />
+              </li>
+              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+                <img
+                  src={FirebaseLogo.src}
+                  width={FirebaseLogo.width}
+                  height={FirebaseLogo.height}
+                  alt="Firebase"
+                  class="w-24 h-auto"
+                />
+              </li>
+              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+                <img
+                  src={CloudflareLogo.src}
+                  width={CloudflareLogo.width}
+                  height={CloudflareLogo.height}
+                  alt="Cloudflare"
+                  class="w-24 h-auto"
+                />
+              </li>
+            </ul>
+          ))
+      }
+      <!-- <ul
+        class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
+      >
+        <li>React.js</li>
+        <li>Next.js</li>
+        <li>Go (Golang)</li>
+        <li>Tailwind CSS</li>
+        <li>Vercel</li>
+        <li>Strapi</li>
+        <li>Firebase</li>
+        <li>Cloudflare</li>
+      </ul>
+      <ul
+        class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
+      >
+        <li>React.js</li>
+        <li>Next.js</li>
+        <li>Go (Golang)</li>
+        <li>Tailwind CSS</li>
+        <li>Vercel</li>
+        <li>Strapi</li>
+        <li>Firebase</li>
+        <li>Cloudflare</li>
+      </ul> -->
+    </section>
 
     <h2 class="text-xl font-bold text-stone-800">Hobbies</h2>
     <ul class="grid grid-flow-row grid-cols-12 gap-4">
