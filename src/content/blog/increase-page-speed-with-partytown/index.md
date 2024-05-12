@@ -36,8 +36,8 @@ npx astro add partytown
 จะมี prompt ต่างๆ ให้ตอบ `yes` ไปแล้ว `astro.config.js` ของเราจะหน้าตาคล้ายๆ แบบนี้
 
 ```js
-import { defineConfig } from 'astro/config';
-import partytown from '@astrojs/partytown';
+import { defineConfig } from "astro/config";
+import partytown from "@astrojs/partytown";
 
 export default defineConfig({
   // ...
@@ -48,16 +48,18 @@ export default defineConfig({
 หลังจากนั้นเพื่อให้สามารถให้ partytown จับ event ของ `Google Tag Manager` ได้ ให้เพิ่ม config ไปตามนี้
 
 ```js
-import { defineConfig } from 'astro/config';
-import partytown from '@astrojs/partytown';
+import { defineConfig } from "astro/config";
+import partytown from "@astrojs/partytown";
 
 export default defineConfig({
   // ...
-  integrations: [partytown({
-    config: {
-      forward: ['dataLayer.push'],
-    },
-  })],
+  integrations: [
+    partytown({
+      config: {
+        forward: ["dataLayer.push"],
+      },
+    }),
+  ],
 });
 ```
 
@@ -73,7 +75,8 @@ export default defineConfig({
 <!-- Google Tag Manager -->
 <script
   type="text/partytown"
-  src="https://www.googletagmanager.com/gtag/js?id={YOUR-GTAG-ID}"></script>
+  src="https://www.googletagmanager.com/gtag/js?id={YOUR-GTAG-ID}"
+></script>
 <script type="text/partytown">
   window.dataLayer = window.dataLayer || [];
   function gtag() {

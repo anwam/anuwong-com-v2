@@ -8,7 +8,7 @@ tags:
   - find
   - rust
   - cli
-categories: 
+categories:
   - fd
   - find
   - rust
@@ -20,7 +20,7 @@ preview: /src/content/blog/how-to-find-files-with-fd/screenshots-1.png
 ปกติใช้ find cli ในการหาไฟล์ในเครื่องตาม pattern ต่างๆ วันนี้มาแนะนำให้รู้จัก fd ที่เป็น find alternative ที่เขียนด้วย rust ครับ
 
 สิ่งที่ใช้งาน find หลักๆ ก็จะเป็นพวก หาไฟล์ jpeg ทั้งหมดใน directory นี้
-  
+
 ```bash
 find . -name "*.jpeg"
 ```
@@ -93,8 +93,7 @@ fd -t d -I node_modules
 fd -e docx '.*[0-9]\.docx$'
 ```
 
-จริงๆ features หลักๆนั้นก็ทำได้เหมือน find นั่นแหละ แต่ส่วนที่ต่างกันคือความเร็ว! เพราะ fd นั้นสามารถหาของได้เร็วกว่ามากๆ [ดูผล benchmark เทียบกับ find ได้เลย](https://github.com/sharkdp/fd#benchmark) 
-
+จริงๆ features หลักๆนั้นก็ทำได้เหมือน find นั่นแหละ แต่ส่วนที่ต่างกันคือความเร็ว! เพราะ fd นั้นสามารถหาของได้เร็วกว่ามากๆ [ดูผล benchmark เทียบกับ find ได้เลย](https://github.com/sharkdp/fd#benchmark)
 
 ### find benchmark
 
