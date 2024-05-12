@@ -49,21 +49,21 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
 
 <BaseLayout title={title} description={SITE_DESCRIPTION}>
   <main
-    class="container px-4 md:px-0 flex flex-col lg:max-w-4xl gap-4 mx-auto mt-4"
+    class="container flex flex-col gap-4 px-4 mx-auto mt-4 md:px-0 lg:max-w-4xl"
   >
     <h1 class="sr-only">{SITE_TITLE}</h1>
     <BlogSection posts={posts} />
 
     <div class="border-b border-stone-200"></div>
     <div class="grid grid-flow-row grid-cols-5 gap-4">
-      <div class="flex flex-col gap-y-4 col-span-5 lg:col-span-2">
+      <div class="flex flex-col col-span-5 gap-y-4 lg:col-span-2">
         <section
-          class="p-4 h-fit shadow rounded-xl bg-stone-100 shadow-stone-400"
+          class="p-4 shadow h-fit rounded-xl bg-stone-50 shadow-stone-400"
         >
           <Profile />
         </section>
         <ul
-          class="p-4 col-span-3 md:col-span-2 bg-stone-100 rounded-xl shadow border"
+          class="col-span-3 p-4 border shadow md:col-span-2 bg-stone-50 rounded-xl"
         >
           <h2 class="text-xl font-bold text-stone-800">Projects</h2>
           {
@@ -87,7 +87,7 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
         </ul>
       </div>
       <section
-        class="col-span-5 lg:col-span-3 p-4 shadow rounded-xl bg-stone-100 shadow-stone-400"
+        class="col-span-5 p-4 shadow lg:col-span-3 rounded-xl bg-stone-50 shadow-stone-400"
       >
         <h2 class="text-xl font-bold text-stone-800">Work Experience</h2>
         <Timeline />
@@ -96,84 +96,84 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
 
     <h2 class="text-xl font-bold text-stone-800">Tech Stack</h2>
     <section
-      class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]"
+      class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_64px,_black_calc(100%-64px),transparent_100%)] lg:[mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]"
     >
       {
         Array(2)
           .fill(1)
           .map((_, i) => (
-            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-2 [&_img]:max-w-none animate-infinite-scroll">
-              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-1 lg:[&_li]:mx-2 [&_img]:max-w-none animate-infinite-scroll">
+              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
                 <img
                   src={ReactLogo.src}
                   width={ReactLogo.width}
                   height={ReactLogo.height}
                   alt="React.js"
-                  class="w-24 h-auto"
+                  class="w-16 h-auto lg:w-24"
                 />
-                React.js
+                <span class="mt-1 text-xs font-bold">React.js</span>
               </li>
-              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
                 <img
                   src={NextLogo.src}
                   width={NextLogo.width}
                   height={NextLogo.height}
                   alt="Next.js"
-                  class="w-24 h-auto"
+                  class="w-16 h-auto lg:w-24"
                 />
               </li>
-              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
                 <img
                   src={GolangLogo.src}
                   width={GolangLogo.width}
                   height={GolangLogo.height}
                   alt="Go (Golang)"
-                  class="w-24 h-auto shadow rounded-xl"
+                  class="w-16 h-auto lg:w-24"
                 />
               </li>
-              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
                 <img
                   src={TailwindCSSLogo.src}
                   width={TailwindCSSLogo.width}
                   height={TailwindCSSLogo.height}
                   alt="Tailwind CSS"
-                  class="w-24 h-auto"
+                  class="w-16 h-auto lg:w-24"
                 />
               </li>
-              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
                 <img
                   src={VercelLogo.src}
                   width={VercelLogo.width}
                   height={VercelLogo.height}
                   alt="Vercel"
-                  class="w-24 h-auto"
+                  class="w-16 h-auto lg:w-24"
                 />
               </li>
-              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
                 <img
                   src={StrapiLogo.src}
                   width={StrapiLogo.width}
                   height={StrapiLogo.height}
                   alt="Strapi"
-                  class="w-24 h-auto"
+                  class="w-16 h-auto lg:w-24"
                 />
               </li>
-              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white aspect-square rounded-xl lg:h-40">
                 <img
                   src={FirebaseLogo.src}
                   width={FirebaseLogo.width}
                   height={FirebaseLogo.height}
                   alt="Firebase"
-                  class="w-24 h-auto"
+                  class="w-16 h-auto lg:w-24"
                 />
               </li>
-              <li class="flex flex-col items-center justify-center p-4 bg-stone-50 rounded-xl w-auto aspect-square h-40">
+              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
                 <img
                   src={CloudflareLogo.src}
                   width={CloudflareLogo.width}
                   height={CloudflareLogo.height}
                   alt="Cloudflare"
-                  class="w-24 h-auto"
+                  class="w-16 h-auto lg:w-24"
                 />
               </li>
             </ul>

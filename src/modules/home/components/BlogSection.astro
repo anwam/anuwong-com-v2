@@ -12,10 +12,10 @@ const { posts } = Astro.props;
 {
   posts.length > 0 && (
     <>
-      <div class="flex items-center gap-4 justify-between">
-        <h2 class="w-fit text-xl font-bold text-stone-800">Blogs</h2>
+      <div class="flex items-center justify-between gap-4">
+        <h2 class="text-xl font-bold w-fit text-stone-800">Blogs</h2>
         <a
-          class="px-2 py-1 bg-stone-800 text-stone-100 inline-block w-fit rounded"
+          class="inline-block px-2 py-1 rounded bg-stone-800 text-stone-100 w-fit"
           href="/blog"
         >
           <span>ดูทั้งหมด</span>
@@ -23,9 +23,9 @@ const { posts } = Astro.props;
       </div>
       <ul class="grid md:grid-cols-2 lg:grid-cols-3 grid-flow-row gap-4">
         {posts.map((post) => (
-          <li class="overflow-hidden bg-stone-100 shadow rounded-xl shadow-stone-600 hover:shadow-stone-700 hover:bg-stone-200 transition-all">
+          <li class="overflow-hidden shadow bg-stone-100 rounded-xl shadow-stone-600 hover:shadow-stone-700 hover:bg-stone-200 transition-all">
             <a
-              class="flex flex-row items-center gap-4 p-4 h-full"
+              class="flex flex-row items-center h-full p-4 gap-4"
               href={`/blog/${post.slug}`}
             >
               {post.data.preview && (

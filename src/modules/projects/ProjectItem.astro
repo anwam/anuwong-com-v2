@@ -12,12 +12,12 @@ type Props = {
 const { title, content, thumbnail, url } = Astro.props;
 ---
 
-<h3 class="text-lg font-bold mb-4">
+<h3 class="mb-4 text-lg font-bold">
   <a href={url} class="underline">{title}</a>
 </h3>
 <Image
   src={thumbnail}
   alt={title}
-  class="w-full h-64 object-cover object-top rounded-lg shadow"
+  class="object-cover object-top w-full h-64 rounded-lg shadow"
 />
 <p class="mt-2 whitespace-pre-line text-stone-500">{content}</p>

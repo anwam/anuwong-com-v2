@@ -20,14 +20,14 @@ const { title, description, date, updatedDate, preview, id, slug } =
   imageUrl={preview?.src}
 >
   <slot name="head" />
-  <main class="container lg:max-w-4xl mx-auto">
+  <main class="container mx-auto lg:max-w-4xl">
     <article
       class="p-4 prose prose-stone max-w-none md:mt-4 bg-stone-100 md:rounded-2xl"
     >
       {
         preview && (
           <Picture
-            class="rounded-xl w-auto h-auto mx-auto"
+            class="w-auto h-auto mx-auto rounded-xl"
             loading="eager"
             sizes="(min-width: 1024px)  864px, (min-width: 768px) 648px, 100vw"
             src={preview}

@@ -1,4 +1,5 @@
 ---
+import Analytics from "@/components/Analytics.astro";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -33,17 +34,6 @@ const { title, description, imageUrl } = Astro.props;
     <slot name="scripts" />
 
     <!-- Google Tag Manager -->
-    <script
-      is:global
-      type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-W4ZZRMVS89"></script>
-    <script is:global type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-W4ZZRMVS89");
-    </script>
+    {import.meta.env.PROD && <Analytics />}
   </body>
 </html>

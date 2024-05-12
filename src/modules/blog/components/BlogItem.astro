@@ -26,7 +26,7 @@ const { isFirst, post } = Astro.props;
   ]}
 >
   <a
-    class="flex flex-row items-center gap-x-4 max-w-full w-full h-full max-h-full relative"
+    class="relative flex flex-row items-center w-full h-full max-w-full max-h-full gap-x-4"
     href={`/blog/${post.slug}/`}
   >
     {
@@ -46,15 +46,15 @@ const { isFirst, post } = Astro.props;
         />
       )
     }
-    <article class="self-start relative h-auto max-h-full max-w-full w-3/4">
+    <article class="relative self-start w-3/4 h-auto max-w-full max-h-full">
       <h4 class="font-bold text-stone-800">
         {post.data.title}
       </h4>
       <FormattedDate date={post.data.date} />
-      <p class="text-stone-700 text-sm md:text-base line-clamp-2">
+      <p class="text-sm text-stone-700 md:text-base line-clamp-2">
         {post.data.description}
       </p>
-      <ul class="flex flex-row gap-x-1 gap-y-1 mt-2 text-xs flex-wrap">
+      <ul class="flex flex-row flex-wrap mt-2 text-xs gap-x-1 gap-y-1">
         {
           post.data.tags &&
             post.data.tags

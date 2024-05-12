@@ -51,7 +51,7 @@ const experiences: Array<Experience> = [
 ];
 ---
 
-<ol class="mt-2 relative border-s border-stone-700">
+<ol class="relative mt-2 border-s border-stone-700">
   {
     experiences.reverse().map((exp) => (
       <li class="ms-4">
@@ -72,7 +72,7 @@ const experiences: Array<Experience> = [
         </time>
         <h3 class="text-lg font-semibold text-stone-900">{exp.position}</h3>
         <p class="text-base font-normal text-stone-500">at {exp.workplace}</p>
-        <p class="mb-4 text-sm font-normal text-stone-600 whitespace-pre-line">
+        <p class="mb-4 text-sm font-normal whitespace-pre-line text-stone-600">
           {exp.description}
         </p>
       </li>

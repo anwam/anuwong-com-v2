@@ -4,17 +4,16 @@ import WebringIcon from "./WebringIcon.svg";
 const today = new Date();
 ---
 
-<footer class="flex flex-row gap-4 items-center justify-center w-full my-4">
+<footer
+  class="flex flex-row flex-wrap items-center justify-center w-full p-4 text-xs lg:text-base gap-x-2 gap-y-2"
+>
   <span>
-    &copy; {today.getFullYear()} Anuwong built with <a
-      class="underline text-violet-700 font-bold"
-      href="https://astro.build">Astro</a
-    > and <a
-      href="https://tailwindcss.com"
-      class="text-blue-500 font-bold underline">Tailwind CSS</a
+    &copy;{today.getFullYear()} built with <span class="text-red-500">❤️</span> and
+    <a class="font-bold underline text-violet-700" href="https://astro.build"
+      >Astro</a
     >. All rights reserved.
   </span>
   <a href="https://webring.wonderful.software/#/anuwong.com" title="วงแหวนเว็บ">
-    <Image alt="วงแหวนเว็บ" width="32" height="32" src={WebringIcon} />
+    <Image alt="วงแหวนเว็บ" width="24" height="24" src={WebringIcon} />
   </a>
 </footer>

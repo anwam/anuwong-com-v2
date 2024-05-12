@@ -28,6 +28,8 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240208.0",
     "@tailwindcss/typography": "^0.5.10",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
     "wrangler": "^3.28.1"
   },
   "volta": {
