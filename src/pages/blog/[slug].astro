@@ -34,7 +34,7 @@ const { Content } = await post.render();
     {
       prev ? (
         <a
-          class="px-4 py-2 text-sm rounded shadow-sm bg-stone-600 text-stone-200"
+          class="px-4 py-2 text-sm rounded shadow-sm bg-gray-600 text-gray-200"
           href={`/blog/${prev.slug}`}
         >
           ← {prev.data.title}
@@ -46,7 +46,7 @@ const { Content } = await post.render();
     {
       next ? (
         <a
-          class="px-4 py-2 text-sm rounded shadow-sm bg-stone-600 text-stone-200"
+          class="px-4 py-2 text-sm rounded shadow-sm bg-gray-600 text-gray-200"
           href={`/blog/${next.slug}`}
         >
           {next.data.title} →
@@ -80,17 +80,16 @@ const { Content } = await post.render();
       .replace(/^\//, "")
       .replace(/\/$/, "")
       .replace(/\//g, "-") || "home";
-  console.debug(pathname);
-  document.addEventListener("astro:page-load", () => {
-    putPageView(pathname);
-  });
 
-  document.addEventListener("astro:after-swap", () => {
-    const currentPath =
-      window.location.pathname
-        .replace(/^\//, "")
-        .replace(/\/$/, "")
-        .replace(/\//g, "-") || "home";
-    putPageView(currentPath);
-  });
+  document.body.addEventListener(
+    "astro:page-load",
+    () => {
+      setTimeout(() => {
+        putPageView(pathname);
+      }, 2000);
+    },
+    {
+      once: true,
+    },
+  );
 </script>

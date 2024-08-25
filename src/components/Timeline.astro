@@ -51,28 +51,28 @@ const experiences: Array<Experience> = [
 ];
 ---
 
-<ol class="relative mt-2 border-s border-stone-700">
+<ol class="relative mt-2 border-s border-gray-700">
   {
     experiences.reverse().map((exp) => (
       <li class="ms-4">
-        <div class="absolute w-2 h-2 rounded-full mt-[10px] -start-1 border border-stone-900 bg-stone-700" />
+        <div class="absolute w-2 h-2 rounded-full mt-[10px] -start-1 border border-gray-900 bg-gray-700" />
         <time
           class:list={[
             "text-xs font-normal leading-none inline-block",
             {
-              "bg-stone-200 p-2 border border-stone-300 rounded-lg mb-2 text-stone-700":
+              "bg-gray-200 p-2 border border-gray-300 rounded-lg mb-2 text-gray-700":
                 exp.present,
             },
             {
-              "mb-1 text-stone-500": !exp.present,
+              "mb-1 text-gray-500": !exp.present,
             },
           ]}
         >
           {exp.time}
         </time>
-        <h3 class="text-lg font-semibold text-stone-900">{exp.position}</h3>
-        <p class="text-base font-normal text-stone-500">at {exp.workplace}</p>
-        <p class="mb-4 text-sm font-normal whitespace-pre-line text-stone-600">
+        <h3 class="text-lg font-semibold text-gray-900">{exp.position}</h3>
+        <p class="text-base font-normal text-gray-500">at {exp.workplace}</p>
+        <p class="mb-4 text-sm font-normal whitespace-pre-line text-gray-600">
           {exp.description}
         </p>
       </li>

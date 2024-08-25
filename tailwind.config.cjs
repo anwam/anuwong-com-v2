@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "Kanit", ...defaultTheme.fontFamily.sans],
+        sans: ["IBM Plex Sans Thai", "Inter", ...defaultTheme.fontFamily.sans],
         serif: ["IBM Plex Serif", "Sarabun", ...defaultTheme.fontFamily.serif],
       },
       animation: {

@@ -12,15 +12,15 @@ const { isFirst, post } = Astro.props;
 
 <li
   class:list={[
-    "bg-stone-100 hover:bg-stone-200",
+    "bg-gray-50 hover:bg-gray-100",
     "jusitfy-center",
     "items-center",
-    "shadow shadow-stone-400",
-    "p-4",
+    "shadow shadow-gray-400",
+    "p-2 md:p-4",
     "rounded-2xl",
     "w-full max-w-full",
     "h-full max-h-48",
-    "hover:shadow-xl transition-all",
+    "hover:shadow-lg transition-all",
     { "col-span-12": isFirst },
     { "col-span-12 md:col-span-6": !isFirst },
   ]}
@@ -40,18 +40,18 @@ const { isFirst, post } = Astro.props;
               "md:w-[128px] md:h-[128px]": isFirst,
             },
           ]}
-          class="w-[72px] h-[72px]  border rounded-xl aspect-square object-contain bg-white"
+          class="w-[72px] h-[72px]  border rounded-lg aspect-square object-contain bg-white"
           loading={isFirst ? "eager" : "lazy"}
           alt={`${post.slug} preview`}
         />
       )
     }
     <article class="relative self-start w-3/4 h-auto max-w-full max-h-full">
-      <h4 class="font-bold text-stone-800">
+      <h4 class="font-bold text-gray-800">
         {post.data.title}
       </h4>
       <FormattedDate date={post.data.date} />
-      <p class="text-sm text-stone-700 md:text-base line-clamp-2">
+      <p class="text-sm text-gray-700 md:text-base line-clamp-2">
         {post.data.description}
       </p>
       <ul class="flex flex-row flex-wrap mt-2 text-xs gap-x-1 gap-y-1">
@@ -60,7 +60,7 @@ const { isFirst, post } = Astro.props;
             post.data.tags
               .slice(0, 3)
               .map((tag) => (
-                <li class="px-2 py-1 rounded-full text-stone-100 bg-stone-600">
+                <li class="px-2 py-1 rounded-full text-gray-100 bg-gray-600">
                   {tag}
                 </li>
               ))

@@ -5,17 +5,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Timeline from "@/components/Timeline.astro";
 import Profile from "@/modules/home/components/Profile.astro";
 import BlogSection from "@/modules/home/components/BlogSection.astro";
-import ProjectItem from "@/modules/projects/ProjectItem.astro";
 import Proeject1 from "@/assets/images/project-1.webp";
 import type { ImageMetadata } from "astro";
-import ReactLogo from "@/assets/images/react.svg";
-import NextLogo from "@/assets/images/nextjs.svg";
-import GolangLogo from "@/assets/images/golang.jpg";
-import TailwindCSSLogo from "@/assets/images/tailwindcss.svg";
-import VercelLogo from "@/assets/images/vercel.png";
-import StrapiLogo from "@/assets/images/strapi.jpg";
-import FirebaseLogo from "@/assets/images/firebase.svg";
-import CloudflareLogo from "@/assets/images/cloudflare.png";
 
 const title = `Home | ${SITE_TITLE}`;
 
@@ -36,7 +27,7 @@ const projects: Array<{
 }> = [
   {
     title: "Korakotmotors Website",
-    content: `Used car platform website.`,
+    content: "Used car platform website.",
     thumbnail: Proeject1,
     url: "https://korakotmotors.com",
   },
@@ -44,172 +35,25 @@ const projects: Array<{
 
 const posts = (await getCollection("blog", (blog) => !blog.data.draft))
   .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
-  .slice(0, 6);
+  .slice(0, 12);
 ---
 
 <BaseLayout title={title} description={SITE_DESCRIPTION}>
   <main
-    class="container flex flex-col gap-4 px-4 mx-auto mt-4 md:px-0 lg:max-w-4xl"
+    class="container bg-gray-200 flex flex-col gap-4 md:px-4 mx-auto md:py-8 py-2 px-2 lg:max-w-5xl"
   >
     <h1 class="sr-only">{SITE_TITLE}</h1>
+    <header>
+      <Profile />
+    </header>
+
     <BlogSection posts={posts} />
 
-    <div class="border-b border-stone-200"></div>
-    <div class="grid grid-flow-row grid-cols-5 gap-4">
-      <div class="flex flex-col col-span-5 gap-y-4 lg:col-span-2">
-        <section
-          class="p-4 shadow h-fit rounded-xl bg-stone-50 shadow-stone-400"
-        >
-          <Profile />
-        </section>
-        <ul
-          class="col-span-3 p-4 border shadow md:col-span-2 bg-stone-50 rounded-xl"
-        >
-          <h2 class="text-xl font-bold text-stone-800">Projects</h2>
-          {
-            projects.length > 0 ? (
-              projects.map((project) => (
-                <li class="my-3">
-                  <ProjectItem
-                    title={project.title}
-                    content={project.content}
-                    thumbnail={project.thumbnail}
-                    url={project.url}
-                  />
-                </li>
-              ))
-            ) : (
-              <li class="p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
-                Coming soon.
-              </li>
-            )
-          }
-        </ul>
-      </div>
-      <section
-        class="col-span-5 p-4 shadow lg:col-span-3 rounded-xl bg-stone-50 shadow-stone-400"
-      >
-        <h2 class="text-xl font-bold text-stone-800">Work Experience</h2>
-        <Timeline />
-      </section>
-    </div>
-
-    <h2 class="text-xl font-bold text-stone-800">Tech Stack</h2>
-    <section
-      class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_64px,_black_calc(100%-64px),transparent_100%)] lg:[mask-image:_linear-gradient(to_right,transparent_0,_black_96px,_black_calc(100%-96px),transparent_100%)]"
-    >
-      {
-        Array(2)
-          .fill(1)
-          .map((_, i) => (
-            <ul class="flex items-center justify-center md:justify-start [&_li]:mx-1 lg:[&_li]:mx-2 [&_img]:max-w-none animate-infinite-scroll">
-              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
-                <img
-                  src={ReactLogo.src}
-                  width={ReactLogo.width}
-                  height={ReactLogo.height}
-                  alt="React.js"
-                  class="w-16 h-auto lg:w-24"
-                />
-                <span class="mt-1 text-xs font-bold">React.js</span>
-              </li>
-              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
-                <img
-                  src={NextLogo.src}
-                  width={NextLogo.width}
-                  height={NextLogo.height}
-                  alt="Next.js"
-                  class="w-16 h-auto lg:w-24"
-                />
-              </li>
-              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
-                <img
-                  src={GolangLogo.src}
-                  width={GolangLogo.width}
-                  height={GolangLogo.height}
-                  alt="Go (Golang)"
-                  class="w-16 h-auto lg:w-24"
-                />
-              </li>
-              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
-                <img
-                  src={TailwindCSSLogo.src}
-                  width={TailwindCSSLogo.width}
-                  height={TailwindCSSLogo.height}
-                  alt="Tailwind CSS"
-                  class="w-16 h-auto lg:w-24"
-                />
-              </li>
-              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
-                <img
-                  src={VercelLogo.src}
-                  width={VercelLogo.width}
-                  height={VercelLogo.height}
-                  alt="Vercel"
-                  class="w-16 h-auto lg:w-24"
-                />
-              </li>
-              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
-                <img
-                  src={StrapiLogo.src}
-                  width={StrapiLogo.width}
-                  height={StrapiLogo.height}
-                  alt="Strapi"
-                  class="w-16 h-auto lg:w-24"
-                />
-              </li>
-              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white aspect-square rounded-xl lg:h-40">
-                <img
-                  src={FirebaseLogo.src}
-                  width={FirebaseLogo.width}
-                  height={FirebaseLogo.height}
-                  alt="Firebase"
-                  class="w-16 h-auto lg:w-24"
-                />
-              </li>
-              <li class="flex flex-col items-center justify-center w-auto h-24 p-4 bg-white rounded-xl aspect-square lg:h-40">
-                <img
-                  src={CloudflareLogo.src}
-                  width={CloudflareLogo.width}
-                  height={CloudflareLogo.height}
-                  alt="Cloudflare"
-                  class="w-16 h-auto lg:w-24"
-                />
-              </li>
-            </ul>
-          ))
-      }
-      <!-- <ul
-        class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
-      >
-        <li>React.js</li>
-        <li>Next.js</li>
-        <li>Go (Golang)</li>
-        <li>Tailwind CSS</li>
-        <li>Vercel</li>
-        <li>Strapi</li>
-        <li>Firebase</li>
-        <li>Cloudflare</li>
-      </ul>
-      <ul
-        class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll"
-      >
-        <li>React.js</li>
-        <li>Next.js</li>
-        <li>Go (Golang)</li>
-        <li>Tailwind CSS</li>
-        <li>Vercel</li>
-        <li>Strapi</li>
-        <li>Firebase</li>
-        <li>Cloudflare</li>
-      </ul> -->
-    </section>
-
-    <h2 class="text-xl font-bold text-stone-800">Hobbies</h2>
+    <h2 class="text-xl font-bold text-gray-800">Hobbies</h2>
     <ul class="grid grid-flow-row grid-cols-12 gap-4">
       {
         hobbies.map((hobby) => (
-          <li class="flex flex-col items-center justify-center col-span-4 p-4 shadow rounded-xl bg-stone-100 shadow-stone-400">
+          <li class="flex flex-col items-center justify-center col-span-4 p-4 hover:shadow rounded-lg bg-gray-100 hover:shadow-gray-300">
             {hobby.split(" ").map((h) => (
               <span>{h}</span>
             ))}
