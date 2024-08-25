@@ -1,26 +1,26 @@
 ---
-import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE_TITLE } from "../../consts";
-import BlogItem from "@/modules/blog/components/BlogItem.astro";
+import { getCollection } from 'astro:content'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { SITE_TITLE } from '../../consts'
+import BlogItem from '@/modules/blog/components/BlogItem.astro'
 
-const title = `Blogs | ${SITE_TITLE}`;
+const title = `Blogs | ${SITE_TITLE}`
 
-const posts = (await getCollection("blog"))
+const posts = (await getCollection('blog'))
   .filter((blog) => !blog.data.draft)
-  .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf());
+  .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
 ---
 
 <BaseLayout title={title} description="A collection of blogs written by me.">
   <main class="container px-4 mx-auto mt-4 md:px-0 lg:max-w-4xl">
-    <section>
-      <ul class="grid grid-flow-row grid-cols-12 gap-4">
-        {
-          posts.map((post, index) => (
-            <BlogItem isFirst={index === 0} post={post} />
-          ))
-        }
-      </ul>
+    <section
+      class="grid grid-rows-[repeat(4,_auto)] grid-cols-1 md:grid-cols-2 gap-4"
+    >
+      {
+        posts.map((post, index) => (
+          <BlogItem isFirst={index === 0} post={post} />
+        ))
+      }
     </section>
   </main>
 </BaseLayout>

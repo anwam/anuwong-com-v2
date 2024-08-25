@@ -1,20 +1,20 @@
 ---
-import type { HTMLAttributes } from "astro/types";
+import type { HTMLAttributes } from 'astro/types'
 
-type Props = HTMLAttributes<"a">;
+type Props = HTMLAttributes<'a'>
 
-const { href, class: className, ...props } = Astro.props;
+const { href, class: className, ...props } = Astro.props
 
-const { pathname } = Astro.url;
+const { pathname } = Astro.url
 
-const slashes = pathname.replace(/\/$/, "").split("/");
+const slashes = pathname.replace(/\/$/, '').split('/')
 const isActive =
   href === pathname ||
-  href === pathname.replace(/\/$/, "") ||
+  href === pathname.replace(/\/$/, '') ||
   (href?.toString() &&
     slashes
       .slice(1, slashes.length)
-      .includes(href?.toString()?.replace(/^\//, "")));
+      .includes(href?.toString()?.replace(/^\//, '')))
 ---
 
 <a

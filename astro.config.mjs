@@ -1,24 +1,24 @@
-import { defineConfig } from "astro/config";
-import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
-import partytown from "@astrojs/partytown";
+import { defineConfig } from 'astro/config'
+import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
+import tailwind from '@astrojs/tailwind'
+import partytown from '@astrojs/partytown'
 // import compress from "astro-compress";
-import critters from "astro-critters";
+import critters from 'astro-critters'
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.anuwong.com",
+  site: 'https://www.anuwong.com',
   integrations: [
     mdx(),
     sitemap(),
     tailwind(),
     partytown({
       config: {
-        forward: ["dataLayer.push"],
+        forward: ['dataLayer.push'],
       },
     }),
     critters(),
     // compress(),
   ],
-});
+})

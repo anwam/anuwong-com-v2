@@ -1,17 +1,18 @@
 ---
-import FormattedDate from "@/components/FormattedDate.astro";
-import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
+import FormattedDate from '@/components/FormattedDate.astro'
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
 
 type Props = {
-  isFirst?: boolean;
-  post: CollectionEntry<"blog">;
-};
-const { isFirst, post } = Astro.props;
+  isFirst?: boolean
+  post: CollectionEntry<'blog'>
+}
+const { isFirst, post } = Astro.props
 ---
 
-<li
+<div
   class:list={[
+    "grid grid-rows-subgrid row-span-4",
     "bg-gray-50 hover:bg-gray-100",
     "jusitfy-center",
     "items-center",
@@ -21,33 +22,37 @@ const { isFirst, post } = Astro.props;
     "w-full max-w-full",
     "h-full max-h-48",
     "hover:shadow-lg transition-all",
-    { "col-span-12": isFirst },
-    { "col-span-12 md:col-span-6": !isFirst },
+    { "md:col-span-2": isFirst },
+    { "col-span-1": !isFirst },
   ]}
 >
   <a
-    class="relative flex flex-row items-center w-full h-full max-w-full max-h-full gap-x-4"
+    class="relative grid-cols-[repeat(2,_minmax(auto,_max-content))] grid-rows-subgrid grid row-span-4 items-center w-full h-full max-w-full max-h-full gap-x-4"
     href={`/blog/${post.slug}/`}
   >
-    {
-      post.data.preview && (
-        <Image
-          src={post.data.preview}
-          width={isFirst ? 128 : 72}
-          height={isFirst ? 128 : 72}
-          class:list={[
-            {
-              "md:w-[128px] md:h-[128px]": isFirst,
-            },
-          ]}
-          class="w-[72px] h-[72px]  border rounded-lg aspect-square object-contain bg-white"
-          loading={isFirst ? "eager" : "lazy"}
-          alt={`${post.slug} preview`}
-        />
-      )
-    }
-    <article class="relative self-start w-3/4 h-auto max-w-full max-h-full">
-      <h4 class="font-bold text-gray-800">
+    <div class="row-span-4">
+      {
+        post.data.preview && (
+          <Image
+            src={post.data.preview}
+            width={isFirst ? 128 : 72}
+            height={isFirst ? 128 : 72}
+            class:list={[
+              {
+                "md:w-[128px] md:h-[128px]": isFirst,
+              },
+            ]}
+            class="w-[72px] h-[72px]  border rounded-lg aspect-square object-contain bg-white"
+            loading={isFirst ? "eager" : "lazy"}
+            alt={`${post.slug} preview`}
+          />
+        )
+      }
+    </div>
+    <article
+      class="relative grid grid-rows-subgrid row-span-4 self-start h-auto max-w-full max-h-full"
+    >
+      <h4 class="font-bold text-gray-800 text-pretty">
         {post.data.title}
       </h4>
       <FormattedDate date={post.data.date} />
@@ -68,4 +73,4 @@ const { isFirst, post } = Astro.props;
       </ul>
     </article>
   </a>
-</li>
+</div>

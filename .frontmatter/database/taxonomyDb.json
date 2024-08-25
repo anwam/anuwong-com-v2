@@ -1,1 +1,36 @@
-{"taxonomy":{"tags":["analytics","astro","cli","extensions","find","font","golang","image-compression","javascript","nodejs","nvm","optimization","partytown","performance","rust","static-site","testing","volta","vscode","web","web worker"],"categories":["cli","find","image-compression","optimization","performance","rust","web"]}}
+{
+  "taxonomy": {
+    "tags": [
+      "analytics",
+      "astro",
+      "cli",
+      "extensions",
+      "find",
+      "font",
+      "golang",
+      "image-compression",
+      "javascript",
+      "nodejs",
+      "nvm",
+      "optimization",
+      "partytown",
+      "performance",
+      "rust",
+      "static-site",
+      "testing",
+      "volta",
+      "vscode",
+      "web",
+      "web worker"
+    ],
+    "categories": [
+      "cli",
+      "find",
+      "image-compression",
+      "optimization",
+      "performance",
+      "rust",
+      "web"
+    ]
+  }
+}

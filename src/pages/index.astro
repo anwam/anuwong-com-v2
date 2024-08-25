@@ -1,41 +1,41 @@
 ---
-import { getCollection } from "astro:content";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Timeline from "@/components/Timeline.astro";
-import Profile from "@/modules/home/components/Profile.astro";
-import BlogSection from "@/modules/home/components/BlogSection.astro";
-import Proeject1 from "@/assets/images/project-1.webp";
-import type { ImageMetadata } from "astro";
+import { getCollection } from 'astro:content'
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts'
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Timeline from '@/components/Timeline.astro'
+import Profile from '@/modules/home/components/Profile.astro'
+import BlogSection from '@/modules/home/components/BlogSection.astro'
+import Proeject1 from '@/assets/images/project-1.webp'
+import type { ImageMetadata } from 'astro'
 
-const title = `Home | ${SITE_TITLE}`;
+const title = `Home | ${SITE_TITLE}`
 
 const hobbies = [
-  "📖 Reading",
-  "🎧 Music",
-  "🧑🏽‍💻 Coding",
-  "🎮 PlayStation",
-  "📸 Photography",
-  "🐈 Cat",
-];
+  '📖 Reading',
+  '🎧 Music',
+  '🧑🏽‍💻 Coding',
+  '🎮 PlayStation',
+  '📸 Photography',
+  '🐈 Cat',
+]
 
 const projects: Array<{
-  title: string;
-  content: string;
-  thumbnail: ImageMetadata;
-  url?: string;
+  title: string
+  content: string
+  thumbnail: ImageMetadata
+  url?: string
 }> = [
   {
-    title: "Korakotmotors Website",
-    content: "Used car platform website.",
+    title: 'Korakotmotors Website',
+    content: 'Used car platform website.',
     thumbnail: Proeject1,
-    url: "https://korakotmotors.com",
+    url: 'https://korakotmotors.com',
   },
-];
+]
 
-const posts = (await getCollection("blog", (blog) => !blog.data.draft))
+const posts = (await getCollection('blog', (blog) => !blog.data.draft))
   .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
-  .slice(0, 12);
+  .slice(0, 12)
 ---
 
 <BaseLayout title={title} description={SITE_DESCRIPTION}>
