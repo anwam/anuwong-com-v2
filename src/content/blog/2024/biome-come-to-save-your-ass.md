@@ -72,4 +72,12 @@ pnpm biome migrate prettier --write
 ```
 ไฟล์ `biome.json` เราก็จะมี `formatter` config เพิ่มขึ้นมาสำหรับกำหนด coding style ที่จะใช้อ้างอิงในการทำ formattting
 
-สำหรับบทความนี้ก็จบเพียงเท่านี้ ขอให้สนุกกับการเขียนโคตรนะคร้าบ
+### VSCode Extension
+
+สำหรับการใช้งาน Format on Save บน VSCode ก็ทำได้ง่ายๆ โดยการติดตั้ง Extension ของ Biome
+
+จากนั้นไปที่ไฟล์ที่เราต้องการตั้งค่า Formatter ก็กด `cmd` + `shift` + `P` พิมพ์ `Format Document With ...` แล้วเลือก `Configure Default Formatter...`
+
+จะมี Formatter ที่เราติดตั้งเอาไว้ให้เลือก เช่น Prettier, Biome, หรือ default languauge server ของภาษานั้นๆ ให้เราเลือก `Biome` จบ
+
+สำหรับบทความนี้ก็จบเพียงเท่านี้ ขอให้สนุกกับการเขียนโค้ดนะคร้าบ
