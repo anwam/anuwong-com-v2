@@ -50,4 +50,21 @@ const { title, description, date, updatedDate, preview, id, slug } = Astro.props
       <slot />
     </article>
   </main>
+  <div id="giscus" class="giscus mt-4 container mx-auto lg:max-w-4xl px-2 lg:px-0"></div>
+  <script is:inline src="https://giscus.app/client.js"
+        data-repo="anwam/anuwong-blog-comments"
+        data-repo-id="R_kgDOMsijEw"
+        data-category="General"
+        data-category-id="DIC_kwDOMsijE84CiL0Y"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="light_tritanopia"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
 </BaseLayout>
