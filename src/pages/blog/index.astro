@@ -1,14 +1,14 @@
 ---
-import { getCollection } from 'astro:content'
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import { SITE_TITLE } from '../../consts'
-import BlogItem from '@/modules/blog/components/BlogItem.astro'
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_TITLE } from "../../consts";
+import BlogItem from "@/modules/blog/components/BlogItem.astro";
 
-const title = `Blogs | ${SITE_TITLE}`
+const title = `Blogs | ${SITE_TITLE}`;
 
-const posts = (await getCollection('blog'))
+const posts = (await getCollection("blog"))
   .filter((blog) => !blog.data.draft)
-  .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
+  .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf());
 ---
 
 <BaseLayout title={title} description="A collection of blogs written by me.">

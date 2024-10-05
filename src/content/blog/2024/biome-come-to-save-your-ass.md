@@ -2,12 +2,11 @@
 title: Biome ยุติสงครามระหว่าง ESLint และ Prettier
 description: ใครเขียนเว็บต้องเคยใช้หรือรู้จัก ESLint และ Prettier กันมาบ้าง บางครั้งเราต้องมาปวดหัวที่เจ้าสอง Tools นี้มันดันตีกัน วันนี้มารู้จัก Biome ที่จะเข้ามาแทนที่ได้แบบแนบสนิทกัน
 date: 2024-08-25T00:00:00Z
-draft: false
+draft: true
 tags:
   - tool
 preview: ./slogan-light-transparent.CUBRXROI_Z1Eswx2.svg
 slug: biome-come-to-rescue-you
-
 ---
 
 ## One toolchain for your web project
@@ -16,13 +15,11 @@ slug: biome-come-to-rescue-you
 
 โดย Biome นั้นมีให้ใช้งานได้ทั้งแบบ IDE Extension, Node Package, หรือเรียกใช้แบบ Global CLI ผ่าน npx, bunx ได้แบบโคตรง่าย หรือถ้าใครไม่อยากติดตั้ง Node ก็สามารถติดตั้ง Biome ผ่าน package manager ในรูปแบบ `standalone executable` ได้ เช่น `homebrew` เป็นต้น
 
-
 ## Getting Started
 
 มาลองใช้งานกันดีกว่า
 
 > สำหรับ VSCode Extensions สามารถดาวโหลดได้[ที่นี่](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)
-
 
 ### ติดตั้งกันก่อน
 
@@ -63,6 +60,7 @@ pnpm biome lint --write <files>
 ```sh
 pnpm biome migrate eslint --write
 ```
+
 เราจะได้ไฟล์ `biome.json` ที่มีการเพิ่มพวก rules จาก eslint เข้ามา
 
 ### Migrate Prettier
@@ -70,6 +68,7 @@ pnpm biome migrate eslint --write
 ```sh
 pnpm biome migrate prettier --write
 ```
+
 ไฟล์ `biome.json` เราก็จะมี `formatter` config เพิ่มขึ้นมาสำหรับกำหนด coding style ที่จะใช้อ้างอิงในการทำ formattting
 
 ### VSCode Extension

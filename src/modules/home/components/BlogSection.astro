@@ -1,23 +1,20 @@
 ---
-import { Image } from 'astro:assets'
-import type { CollectionEntry } from 'astro:content'
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  posts: CollectionEntry<'blog'>[]
-}
+  posts: CollectionEntry<"blog">[];
+};
 
-const { posts } = Astro.props
+const { posts } = Astro.props;
 ---
 
 {
   posts.length > 0 && (
     <>
-      <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-x-2">
         <h2 class="text-xl font-bold w-fit text-gray-800">Blogs</h2>
-        <a
-          class="inline-block px-2 py-1 rounded bg-gray-800 text-gray-100 w-fit"
-          href="/blog"
-        >
+        <a class="text-gray-600 underline text-xs" href="/blog">
           <span>ดูทั้งหมด</span>
         </a>
       </div>

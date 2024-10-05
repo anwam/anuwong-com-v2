@@ -1,13 +1,13 @@
 ---
-import FormattedDate from '@/components/FormattedDate.astro'
-import { Image } from 'astro:assets'
-import type { CollectionEntry } from 'astro:content'
+import FormattedDate from "@/components/FormattedDate.astro";
+import { Image } from "astro:assets";
+import type { CollectionEntry } from "astro:content";
 
 type Props = {
-  isFirst?: boolean
-  post: CollectionEntry<'blog'>
-}
-const { isFirst, post } = Astro.props
+  isFirst?: boolean;
+  post: CollectionEntry<"blog">;
+};
+const { isFirst, post } = Astro.props;
 ---
 
 <div
