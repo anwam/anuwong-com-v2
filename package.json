@@ -12,26 +12,26 @@
     "prettier": "prettier . --write"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.7",
-    "@astrojs/partytown": "2.1.2",
-    "@astrojs/rss": "4.0.7",
-    "@astrojs/sitemap": "3.2.0",
-    "@astrojs/tailwind": "^5.1.1",
-    "@fontsource/ibm-plex-sans-thai": "5.1.0",
-    "@fontsource/inter": "5.1.0",
-    "@fontsource/sarabun": "5.1.0",
-    "astro": "4.15.11",
-    "astro-compress": "2.3.1",
-    "astro-critters": "2.2.0",
-    "hono": "4.6.3",
+    "@astrojs/mdx": "4.3.0",
+    "@astrojs/partytown": "2.1.4",
+    "@astrojs/rss": "4.0.12",
+    "@astrojs/sitemap": "3.4.1",
+    "@astrojs/tailwind": "6.0.2",
+    "@fontsource/ibm-plex-sans-thai": "5.2.6",
+    "@fontsource/inter": "5.2.6",
+    "@fontsource/sarabun": "5.2.6",
+    "astro": "5.9.1",
+    "astro-compress": "2.3.8",
+    "astro-critters": "2.2.1",
+    "hono": "4.7.11",
     "tailwindcss": "3.4.13"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20241004.0",
-    "@tailwindcss/typography": "0.5.15",
-    "prettier": "3.3.3",
+    "@cloudflare/workers-types": "4.20250607.0",
+    "@tailwindcss/typography": "0.5.16",
+    "prettier": "3.5.3",
     "prettier-plugin-astro": "0.14.1",
-    "wrangler": "3.80.0"
+    "wrangler": "4.19.1"
   },
   "volta": {
     "node": "20.13.1"
