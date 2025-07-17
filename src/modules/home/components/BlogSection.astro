@@ -28,8 +28,8 @@ const { posts } = Astro.props;
               {post.data.preview && (
                 <Image
                   src={post.data.preview}
-                  width={64}
-                  height={64}
+                  width={192}
+                  height={192}
                   class="p-1 aspect-square w-[64px] h-[64px] object-contain bg-gray-50 border border-gray-300 rounded-lg"
                   alt={`preview of ${post.slug}`}
                 />
