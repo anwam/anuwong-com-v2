@@ -5,10 +5,9 @@ date: 2023-09-04T03:56:42.534Z
 preview: ./partytown.svg
 draft: false
 tags:
-  - partytown
-  - web worker
-  - analytics
+  - web
   - performance
+  - tools
 categories: null
 lastmod: 2023-09-04T03:56:42.534Z
 ---

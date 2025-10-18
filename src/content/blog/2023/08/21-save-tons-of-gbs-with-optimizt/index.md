@@ -5,10 +5,9 @@ date: 2023-08-21T01:27:13.922Z
 preview: ./optimizt.png
 draft: false
 tags:
-  - optimization
-  - compression
-  - performance
   - web
+  - optimization
+  - tools
 lastmod: 2023-08-21T03:39:31.317Z
 ---
 

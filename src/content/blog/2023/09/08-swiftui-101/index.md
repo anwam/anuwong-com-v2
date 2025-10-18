@@ -5,9 +5,8 @@ date: 2023-09-08T13:04:18.847Z
 preview: ./preview.png
 draft: false
 tags:
-  - ios
+  - mobile
   - swift
-  - swiftui
 categories: []
 lastmod: 2023-09-08T13:04:18.847Z
 ---

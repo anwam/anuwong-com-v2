@@ -1,13 +1,12 @@
 ---
-title: ลองใช้ Built-in env file ใน Node 20
+title: ลองใช้ Built-in env file ใน Node 20 แถมการ validate env ด้วย zod
 description: Node 20 ได้มีการรองรับ env file แบบ Built-in มาดูกันว่าเราจะใช้งาน environment variables อย่างมั่นใจได้อย่างไร
 date: 2023-10-21T17:24:49.966Z
 preview: ./image-1.png
 draft: false
 tags:
   - nodejs
-  - env
-  - zod
+  - tools
 lastmod: 2023-10-21T17:24:49.966Z
 ---
 

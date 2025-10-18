@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import BlogItem from "@/modules/blog/components/BlogItem.astro";
+import { SITE_TITLE } from "../../consts";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const title = `Tags | ${SITE_TITLE}`;
+
+type Tag = {
+  name: string;
+  count: number;
+};
+
+const allPosts = (await getCollection("blog")).filter(
+  (blog) => blog.data.draft !== true,
+);
+const tagCountMap: Record<string, number> = {};
+allPosts.forEach((post) => {
+  if (post.data.tags) {
+    post.data.tags.forEach((tag) => {
+      if (tagCountMap[tag]) {
+        tagCountMap[tag] += 1;
+      } else {
+        tagCountMap[tag] = 1;
+      }
+    });
+  }
+});
+
+const tags = Object.keys(tagCountMap).sort();
+---
+
+<BaseLayout title={title} description="A collection of blogs written by me.">
+  <main class="container mx-auto mt-3 px-3 md:mt-4 md:px-0 lg:max-w-7xl">
+    <section class="grid grid-cols-1 gap-2 md:grid-cols-3">
+      {
+        tags.map((post, index) => (
+          <a
+            href={`/tags/${post}`}
+            class="rounded-lg border bg-gray-200 p-2 transition hover:bg-gray-300"
+          >
+            <h2 class="flex items-center gap-x-2 text-base font-semibold">
+              #{post} <span class="text-sm">( {tagCountMap[post]} )</span>
+            </h2>
+          </a>
+        ))
+      }
+    </section>
+  </main>
+</BaseLayout>

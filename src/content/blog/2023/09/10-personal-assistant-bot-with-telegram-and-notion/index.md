@@ -6,8 +6,7 @@ preview: ./telegram-peer-photo-size-1-401032061935265706-1-0-0.jpg
 draft: false
 tags:
   - bot
-  - telegram
-  - personal assistant
+  - cloud
 lastmod: 2023-09-10T06:00:21.463Z
 ---
 

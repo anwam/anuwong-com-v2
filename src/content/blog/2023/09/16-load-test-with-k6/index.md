@@ -4,8 +4,7 @@ description: สำหรับ Backend Developer การรู้ limit ข�
 date: 2023-09-16T14:03:43.080Z
 draft: true
 tags:
-  - k6
-  - load test
+  - testing
   - performance
 lastmod: 2023-09-08T13:04:18.847Z
 preview: ../../../k6.svg

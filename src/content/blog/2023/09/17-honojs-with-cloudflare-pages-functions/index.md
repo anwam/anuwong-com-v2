@@ -4,8 +4,8 @@ description: มาแนะนำ Web Framework สำหรับ Edge Computi
 date: 2023-09-17T11:27:47.420Z
 draft: false
 tags:
-  - honojs
-  - cloudflare
+  - web
+  - cloud
 lastmod: 2023-09-17T11:27:47.420Z
 preview: ./hono.png
 ---

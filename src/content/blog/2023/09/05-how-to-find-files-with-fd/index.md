@@ -4,15 +4,9 @@ description: ปกติใช้ find cli ในการหาไฟล์ใ
 date: 2023-09-05T11:22:03.990Z
 draft: false
 tags:
-  - fd
-  - find
-  - rust
-  - cli
+  - tools
 categories:
-  - fd
-  - find
-  - rust
-  - cli
+  - tools
 lastmod: 2023-09-05T11:21:33.402Z
 preview: ./screenshots-1.png
 ---

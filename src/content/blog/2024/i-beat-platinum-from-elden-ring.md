@@ -4,7 +4,7 @@ description: สุดยอดเกมส์ RPG Openworld จากค่า�
 date: 2024-09-04T10:50:40.923Z
 draft: true
 tags:
-  - elden ring
+  - elden-ring
   - game
 lastmod: 2024-09-04T10:50:49.023Z
 preview: ./platinum.jpeg

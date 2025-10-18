@@ -5,9 +5,8 @@ date: 2023-09-03T10:13:00.000Z
 preview: ./astro-logo-dark.png
 draft: false
 tags:
-  - astro
+  - web
   - static-site
-  - javascript
 categories: null
 lastmod: 2023-09-03T10:13:00.000Z
 ---

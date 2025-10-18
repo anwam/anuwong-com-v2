@@ -1,7 +1,7 @@
 {
   "name": "anuwong-com-v2",
   "type": "module",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
     "dev:pages": "wrangler pages dev --kv=PAGE_VIEW --compatibility-date=2023-09-17 --port 4322 --proxy 4321 -- bunx astro dev",

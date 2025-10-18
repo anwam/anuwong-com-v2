@@ -5,8 +5,7 @@ date: 2024-01-29T11:50:59.437Z
 draft: false
 tags:
   - redis
-  - golang
-  - transaction
+  - database
 lastmod: 2024-01-29T11:51:03.441Z
 preview: ./redis-logo-full-color-rgb.webp
 ---

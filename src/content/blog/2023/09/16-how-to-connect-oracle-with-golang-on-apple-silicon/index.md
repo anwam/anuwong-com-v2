@@ -1,13 +1,12 @@
 ---
-title: เชื่อมต่อ Golang กับ OracleDB บน Apple Silicon (m1, m2)
+title: เชื่อมต่อ Golang กับ OracleDB บน Apple Silicon (M1, M2)
 description: ใครใช้ Apple Silicon ทำงานกับ OracleDB และใช้ Golang น่าจะเจอปัญหาการเชื่อมต่อกับ Oracle Client บนเครื่อง วันนี้มาดูวิธีแก้กัน
 date: 2023-09-16T11:54:46.222Z
 draft: false
 tags:
   - oracle
   - golang
-  - macos
-  - apple silicon
+  - database
 lastmod: 2023-09-16T11:54:46.222Z
 preview: ./golang.png
 ---

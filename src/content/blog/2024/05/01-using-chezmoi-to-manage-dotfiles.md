@@ -4,6 +4,8 @@ description: เครื่องมือสำหรับจัดการ 
 date: 2024-05-01T08:27:48.827Z
 draft: false
 tags:
+  - tools
+  - productivity
   - dotfiles
 lastmod: 2024-05-01T08:27:50.329Z
 preview: ./chezmoi.webp

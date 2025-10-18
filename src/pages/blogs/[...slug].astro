@@ -25,11 +25,29 @@ type Props = {
 };
 
 const { post, next, prev } = Astro.props;
+const { tags } = post.data;
 const { Content } = await post.render();
 ---
 
 <BlogPost {...post.data} id={post.id} slug={post.slug}>
   <Content />
+  {
+    tags && (
+      <ul class="mt-4 flex list-none flex-row flex-wrap gap-x-2 gap-y-1 p-0">
+        {tags.map((tag) => (
+          <li class="p-0">
+            <a
+              href={`/tags/${tag}`}
+              class="tag-link inline-flex rounded-full bg-gray-600 px-3 py-1 text-gray-100 transition-colors hover:bg-gray-700"
+              data-tag={tag}
+            >
+              #{tag}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
   <section class="flex flex-col justify-between gap-4 md:flex-row">
     {
       prev ? (

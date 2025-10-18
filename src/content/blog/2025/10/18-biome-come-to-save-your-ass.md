@@ -1,12 +1,12 @@
 ---
 title: Biome ยุติสงครามระหว่าง ESLint และ Prettier
 description: ใครเขียนเว็บต้องเคยใช้หรือรู้จัก ESLint และ Prettier กันมาบ้าง บางครั้งเราต้องมาปวดหัวที่เจ้าสอง Tools นี้มันดันตีกัน วันนี้มารู้จัก Biome ที่จะเข้ามาแทนที่ได้แบบแนบสนิทกัน
-date: 2024-08-25T00:00:00Z
-draft: true
+date: 2025-10-18T00:00:00Z
+draft: false
 tags:
-  - tool
+  - tools
+  - productionity
 preview: ./slogan-light-transparent.CUBRXROI_Z1Eswx2.svg
-slug: biome-come-to-rescue-you
 ---
 
 ## One toolchain for your web project

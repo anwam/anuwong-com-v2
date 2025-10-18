@@ -4,12 +4,9 @@ date: 2024-02-12T08:42:40.032Z
 draft: false
 tags:
   - golang
-  - guregu
-  - guregu/null
+  - tools
 lastmod: 2024-02-12T08:42:42.656Z
 preview: ./golang.png
-keywords:
-  - golang library
 description: หลังจากไม่มีการเคลื่อนไหวกว่า 4 ปี ล่าสุด Guregu maintainer ของ package ชื่อดังอย่าง null ได้ merge และ release โค้ดเวอร์ชั่น 5 ที่ซัพพอร์ต Type Parameter แล้ว
 ---
 

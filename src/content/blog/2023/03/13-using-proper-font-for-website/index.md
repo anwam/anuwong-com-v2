@@ -5,7 +5,6 @@ date: 2023-03-13T06:58:27.656Z
 preview: ./sarabun.png
 draft: false
 tags:
-  - font
   - web
 categories: ""
 lastmod: 2023-08-21T02:06:21.749Z

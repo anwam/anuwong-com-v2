@@ -5,8 +5,8 @@ date: 2023-08-12T05:35:51.589Z
 preview: ./volta.png
 tags:
   - nodejs
-  - volta
-  - nvm
+  - productivity
+  - tools
 lastmod: 2023-08-21T02:06:52.121Z
 ---
 

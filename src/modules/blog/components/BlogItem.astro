@@ -22,48 +22,74 @@ const { post } = Astro.props;
     "w-full max-w-full",
     "h-full max-h-48",
     "transition-all hover:shadow-lg",
+    "cursor-pointer",
   ]}
+  data-post-slug={post.slug}
 >
-  <a
-    class="relative row-span-4 grid h-full max-h-full w-full max-w-full grid-cols-[repeat(2,_minmax(auto,_max-content))] grid-rows-subgrid items-center gap-x-4"
-    href={`/blogs/${post.slug}/`}
+  <article
+    class="relative row-span-4 grid h-auto max-h-full max-w-full grid-rows-subgrid self-start"
   >
-    <article
-      class="relative row-span-4 grid h-auto max-h-full max-w-full grid-rows-subgrid self-start"
-    >
-      <div class="flex flex-row items-start gap-x-4">
-        {
-          post.data.preview && (
-            <Image
-              src={post.data.preview}
-              width={192}
-              height={192}
-              class="aspect-square h-[64px] w-[64px] rounded-lg border bg-white object-contain"
-              loading={"lazy"}
-              alt={`${post.slug} preview`}
-            />
-          )
-        }
-        <h4 class="text-pretty pt-2 font-bold text-gray-800">
-          {post.data.title}
-        </h4>
-      </div>
-      <FormattedDate date={post.data.date} />
-      <p class="line-clamp-2 text-sm text-gray-700 md:text-base">
-        {post.data.description}
-      </p>
-      <ul class="mt-2 flex flex-row flex-wrap gap-x-1 gap-y-1 text-xs">
-        {
-          post.data.tags &&
-            post.data.tags
-              .slice(0, 3)
-              .map((tag) => (
-                <li class="rounded-full bg-gray-600 px-2 py-1 text-gray-100">
-                  {tag}
-                </li>
-              ))
-        }
-      </ul>
-    </article>
-  </a>
+    <div class="flex flex-row items-start gap-x-4">
+      {
+        post.data.preview && (
+          <Image
+            src={post.data.preview}
+            width={192}
+            height={192}
+            class="aspect-square h-[64px] w-[64px] rounded-lg border bg-white object-contain"
+            loading={"lazy"}
+            alt={`${post.slug} preview`}
+          />
+        )
+      }
+      <h4 class="text-pretty pt-2 font-bold text-gray-800">
+        {post.data.title}
+      </h4>
+    </div>
+    <FormattedDate date={post.data.date} />
+    <p class="line-clamp-2 text-sm text-gray-700 md:text-base">
+      {post.data.description}
+    </p>
+    <ul class="mt-2 flex flex-row flex-wrap gap-x-1 gap-y-1 text-xs">
+      {
+        post.data.tags &&
+          post.data.tags.slice(0, 3).map((tag) => (
+            <li>
+              <a
+                href={`/tags/${tag}`}
+                class="tag-link inline-flex rounded-full bg-gray-600 px-2 py-1 text-gray-100 transition-colors hover:bg-gray-700"
+                data-tag={tag}
+              >
+                {tag}
+              </a>
+            </li>
+          ))
+      }
+    </ul>
+  </article>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // Handle blog card clicks
+    document.querySelectorAll("[data-post-slug]").forEach((card) => {
+      card.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+
+        // If clicking on a tag link, don't navigate to the post
+        if (
+          target.classList.contains("tag-link") ||
+          target.closest(".tag-link")
+        ) {
+          return;
+        }
+
+        // Navigate to the blog post
+        const slug = (card as HTMLElement).dataset.postSlug;
+        if (slug) {
+          window.location.href = `/blogs/${slug}/`;
+        }
+      });
+    });
+  });
+</script>
