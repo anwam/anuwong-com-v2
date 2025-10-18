@@ -11,7 +11,9 @@ export async function getStaticPaths() {
   // Collect all unique tags from all posts
   allPosts.forEach((post) => {
     if (post.data.tags) {
-      post.data.tags.forEach((tag) => allTags.add(tag));
+      post.data.tags.forEach((tag) => {
+        allTags.add(tag);
+      });
     }
   });
 

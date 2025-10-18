@@ -5,7 +5,7 @@ date: 2025-10-18T00:00:00Z
 draft: false
 tags:
   - tools
-  - productionity
+  - productivity
 preview: ./slogan-light-transparent.CUBRXROI_Z1Eswx2.svg
 ---
 
