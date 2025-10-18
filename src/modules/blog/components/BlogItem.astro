@@ -12,7 +12,7 @@ const { post } = Astro.props;
 
 <div
   class:list={[
-    "grid grid-rows-subgrid row-span-4",
+    "row-span-4 grid grid-rows-subgrid",
     "bg-gray-50 hover:bg-gray-100",
     "jusitfy-center",
     "items-center",
@@ -21,44 +21,44 @@ const { post } = Astro.props;
     "rounded-2xl",
     "w-full max-w-full",
     "h-full max-h-48",
-    "hover:shadow-lg transition-all",
+    "transition-all hover:shadow-lg",
   ]}
 >
   <a
-    class="relative grid-cols-[repeat(2,_minmax(auto,_max-content))] grid-rows-subgrid grid row-span-4 items-center w-full h-full max-w-full max-h-full gap-x-4"
-    href={`/blog/${post.slug}/`}
+    class="relative row-span-4 grid h-full max-h-full w-full max-w-full grid-cols-[repeat(2,_minmax(auto,_max-content))] grid-rows-subgrid items-center gap-x-4"
+    href={`/blogs/${post.slug}/`}
   >
     <article
-      class="relative grid grid-rows-subgrid row-span-4 self-start h-auto max-w-full max-h-full"
+      class="relative row-span-4 grid h-auto max-h-full max-w-full grid-rows-subgrid self-start"
     >
-      <div class="flex flex-row gap-x-4 items-start">
+      <div class="flex flex-row items-start gap-x-4">
         {
           post.data.preview && (
             <Image
               src={post.data.preview}
               width={192}
               height={192}
-              class="w-[64px] h-[64px]  border rounded-lg aspect-square object-contain bg-white"
+              class="aspect-square h-[64px] w-[64px] rounded-lg border bg-white object-contain"
               loading={"lazy"}
               alt={`${post.slug} preview`}
             />
           )
         }
-        <h4 class="font-bold text-gray-800 text-pretty pt-2">
+        <h4 class="text-pretty pt-2 font-bold text-gray-800">
           {post.data.title}
         </h4>
       </div>
       <FormattedDate date={post.data.date} />
-      <p class="text-sm text-gray-700 md:text-base line-clamp-2">
+      <p class="line-clamp-2 text-sm text-gray-700 md:text-base">
         {post.data.description}
       </p>
-      <ul class="flex flex-row flex-wrap mt-2 text-xs gap-x-1 gap-y-1">
+      <ul class="mt-2 flex flex-row flex-wrap gap-x-1 gap-y-1 text-xs">
         {
           post.data.tags &&
             post.data.tags
               .slice(0, 3)
               .map((tag) => (
-                <li class="px-2 py-1 rounded-full text-gray-100 bg-gray-600">
+                <li class="rounded-full bg-gray-600 px-2 py-1 text-gray-100">
                   {tag}
                 </li>
               ))

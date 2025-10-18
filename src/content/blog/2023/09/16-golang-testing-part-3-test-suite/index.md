@@ -2,7 +2,7 @@
 title: Go Testing Part 3 - จัดระเบียบ Test Case ด้วย testify/suite
 description: Project ขนาดใหญ่มักจะมีจำนวน domain ที่เยอะตาม การเขียน unit test ให้ครอบคลุมการทำงานของแต่ละ domain จึงต้องมีการจัดการ test case ที่ดี
 date: 2023-09-16T13:32:10.824Z
-preview: ../golang.png
+preview: ./golang.png
 draft: false
 tags:
   - golang

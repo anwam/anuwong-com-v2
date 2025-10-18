@@ -9,7 +9,7 @@ tags:
   - macos
   - apple silicon
 lastmod: 2023-09-16T11:54:46.222Z
-preview: ../golang.png
+preview: ./golang.png
 ---
 
 ที่ทำงานเจอปัญหาว่าระหว่างพัฒนา Golang Application ไม่สามารถเชื่อมต่อกับ Oracle DB ได้ เป็นเพราะว่า Oracle Client ยังไม่รองรับสถาปัตยกรรม ARM64 ของ Apple Silicon นั่นเองครับ วันนี้จะพามาเซ็ตอัพ Configuration ต่างๆ กัน

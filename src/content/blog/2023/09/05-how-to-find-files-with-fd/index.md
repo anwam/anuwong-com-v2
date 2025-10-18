@@ -14,7 +14,7 @@ categories:
   - rust
   - cli
 lastmod: 2023-09-05T11:21:33.402Z
-preview: /src/content/blog/how-to-find-files-with-fd/screenshots-1.png
+preview: ./screenshots-1.png
 ---
 
 ปกติใช้ find cli ในการหาไฟล์ในเครื่องตาม pattern ต่างๆ วันนี้มาแนะนำให้รู้จัก fd ที่เป็น find alternative ที่เขียนด้วย rust ครับ

@@ -5,21 +5,21 @@ import { Image } from "astro:assets";
 import ProfileImg from "../assets/images/profile-pic-2.jpg";
 ---
 
-<header class="sticky top-0 z-50 px-2 py-0 m-0 shadow-lg bg-gray-200">
-  <nav class="container mx-auto lg:max-w-4xl">
-    <ul class="flex flex-row justify-between w-full h-16">
+<header class="sticky top-0 z-50 m-0 bg-gray-200 px-2 py-0 shadow-lg">
+  <nav class="container mx-auto lg:max-w-7xl">
+    <ul class="flex h-16 w-full flex-row justify-between">
       <li class="flex flex-row items-center">
         <Image
           src={ProfileImg}
           alt="Profile Image"
           width={64}
           height={64}
-          class="w-[32px] h-[32px] inline-block rounded-full"
+          class="inline-block h-[32px] w-[32px] rounded-full"
         />
         <h2><a class="px-2 py-4" href="/">{SITE_TITLE}</a></h2>
       </li>
       <li class="flex flex-row items-center gap-4">
-        <HeaderLink href="/blog">Blogs</HeaderLink>
+        <HeaderLink href="/blogs">Blogs</HeaderLink>
         <a
           href="https://github.com/anwam"
           class="flex flex-row items-center justify-center gap-2 hover:underline hover:underline-offset-2"

@@ -12,26 +12,26 @@
     "prettier": "prettier . --write"
   },
   "dependencies": {
-    "@astrojs/mdx": "4.3.0",
+    "@astrojs/mdx": "4.3.7",
     "@astrojs/partytown": "2.1.4",
     "@astrojs/rss": "4.0.12",
-    "@astrojs/sitemap": "3.4.1",
+    "@astrojs/sitemap": "3.6.0",
     "@astrojs/tailwind": "6.0.2",
-    "@fontsource/ibm-plex-sans-thai": "5.2.6",
-    "@fontsource/inter": "5.2.6",
-    "@fontsource/sarabun": "5.2.6",
-    "astro": "5.9.1",
+    "@fontsource/ibm-plex-sans-thai": "5.2.8",
+    "@fontsource/inter": "5.2.8",
+    "@fontsource/sarabun": "5.2.8",
+    "astro": "5.14.6",
     "astro-compress": "2.3.8",
     "astro-critters": "2.2.1",
-    "hono": "4.7.11",
+    "hono": "4.10.1",
     "tailwindcss": "3.4.13"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20250607.0",
-    "@tailwindcss/typography": "0.5.16",
-    "prettier": "3.5.3",
+    "@tailwindcss/typography": "0.5.19",
+    "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",
-    "wrangler": "4.19.1"
+    "prettier-plugin-tailwindcss": "0.7.1",
+    "wrangler": "4.43.0"
   },
   "volta": {
     "node": "20.13.1"

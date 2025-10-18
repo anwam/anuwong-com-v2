@@ -2,7 +2,7 @@
 title: Go Testing Part 1 - json.Unmarshal mock ยังไงอะ
 description: เมื่อถึงขั้นตอนทำ Unit Testing จะเจอปัญหาว่า เออเราจะทำยังไงให้ json.Unmarshal มัน error ได้นะ
 date: 2023-02-04T08:42:51.220Z
-preview: ../golang.png
+preview: ./golang.png
 draft: false
 tags:
   - golang

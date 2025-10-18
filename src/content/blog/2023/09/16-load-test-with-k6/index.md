@@ -8,7 +8,7 @@ tags:
   - load test
   - performance
 lastmod: 2023-09-08T13:04:18.847Z
-preview: ../k6.svg
+preview: ../../../k6.svg
 ---
 
 สำหรับ Backend Developer การรู้ limit ของระบบที่ตัวเองทำเป็นเรื่องสำคัญมาก เพราะการวางแผนการ scaling เป็นส่วนหนึ่งของงาน วันนี้มาใช้ [k6](https://k6.io/) ทำ load test เพื่อดูว่าระบบของเรารับโหลดให้มากแค่ไหนกัน

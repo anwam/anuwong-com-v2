@@ -10,7 +10,6 @@ lastmod: 2024-01-30T03:05:23.794Z
 preview: ./logo.png
 keywords:
   - coding assistant
-slug: ประหยัดเงินค่า-coding-assistant-ด้วย-tabbyml
 description: ทุกวันนี้ AI เข้ามามีบทบาทในการทำงาน ไม่เว้นแม้แต่งาน Programming มีหลายคนใช้ Coding Assistant ช่วยทำงาน วันนี้เราพามาดู Coding Assistant ที่สามารถรันบนเครื่องเราเพื่อประหยัดเงินและยังปลอดภัยอีกด้วย
 ---
 

@@ -7,7 +7,6 @@ tags:
   - dotfiles
 lastmod: 2024-05-01T08:27:50.329Z
 preview: ./chezmoi.webp
-slug: manage-dotfiles-with-chezmoi
 ---
 
 Developers ที่ใช้ macOS หรือ Linux distro แน่นอนว่าจะต้องมี Configuration files ที่ชื่อนำหน้าด้วย `.` กันแน่นอน ไม่ว่าจะเป็น `.zshrc` `.bashrc` `.vimrc` `.gitconfig` ซึ่งเป็นไฟล์ที่ application ต่างๆ สร้างขึ้นเพื่อเก็บ settings, configuration เอาไว้ ให้เราทำงานได้สะดวก หรือปรับแต่งการทำงานของให้เหมาะกับ workflow ของเรา
