@@ -23,7 +23,7 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
 
 <BaseLayout title={title} description={SITE_DESCRIPTION}>
   <main
-    class="container mx-auto flex flex-col gap-4 bg-gray-200 px-2 py-2 md:px-4 md:py-8 lg:max-w-7xl"
+    class="container mx-auto flex flex-col gap-4 bg-gray-200 px-2 py-2 md:px-4 md:py-8 lg:max-w-5xl"
   >
     <h1 class="sr-only">{SITE_TITLE}</h1>
     <header>

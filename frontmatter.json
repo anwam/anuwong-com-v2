@@ -42,17 +42,12 @@
           "title": "Categories",
           "name": "categories",
           "type": "categories"
-        },
-        {
-          "title": "lastmod",
-          "name": "lastmod",
-          "type": "datetime"
         }
       ]
     }
   ],
   "frontMatter.framework.id": "astro",
-  "frontMatter.preview.host": "http://localhost:3000",
+  "frontMatter.preview.host": "http://localhost:4321",
   "frontMatter.content.pageFolders": [
     {
       "title": "blog",
