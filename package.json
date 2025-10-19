@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
-    "dev:pages": "wrangler pages dev --kv=PAGE_VIEW --compatibility-date=2023-09-17 --port 4322 --proxy 4321 -- bunx astro dev",
+    "dev:pages": "wrangler pages dev --kv=ANUWONG_KV --compatibility-date=2023-09-17 --port 4322 --proxy 4321 -- bunx astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -27,6 +27,7 @@
     "tailwindcss": "3.4.13"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "4.20251011.0",
     "@tailwindcss/typography": "0.5.19",
     "prettier": "3.6.2",
     "prettier-plugin-astro": "0.14.1",

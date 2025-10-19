@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
+import FloatingButton from "@/modules/blog/components/FloatingButton.astro";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
@@ -74,6 +75,7 @@ const { Content } = await post.render();
       )
     }
   </section>
+  <FloatingButton slug={post.slug.replaceAll("/", "-")} />
 </BlogPost>
 
 <script>

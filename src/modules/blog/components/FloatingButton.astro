@@ -1,0 +1,98 @@
+---
+export interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+---
+
+<div id="like-button-container" class="fixed bottom-8 right-8 z-50">
+  <button
+    id="like-button"
+    data-slug={slug}
+    class:list={[
+      "flex items-center gap-2 rounded-full bg-white px-4 py-2 text-lg shadow-lg transition-all",
+      "hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
+      "dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700",
+    ]}
+    aria-label="Like this post"
+  >
+    <span>👍</span>
+    <span id="like-count" class="font-semibold">0</span>
+  </button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const likeButton = document.getElementById(
+      "like-button",
+    ) as HTMLButtonElement;
+    const likeCountSpan = document.getElementById(
+      "like-count",
+    ) as HTMLSpanElement;
+
+    if (!likeButton || !likeCountSpan) {
+      return;
+    }
+
+    const slug = likeButton.dataset.slug;
+    const cookies = document.cookie.split("; ").reduce(
+      (acc, cookie) => {
+        const [name, value] = cookie.split("=");
+        acc[name] = value;
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
+    if (cookies[`liked_${slug}`]) {
+      likeButton.disabled = true;
+    }
+
+    if (!slug) {
+      console.error("Like button is missing slug.");
+      return;
+    }
+
+    // Fetch initial likes
+    fetch(`/api/pages/${slug}/likes`)
+      .then((response) => response.json())
+      .then((data) => {
+        likeCountSpan.textContent = data.likes.toString();
+      })
+      .catch((error) => console.error("Error fetching likes:", error));
+
+    likeButton.addEventListener("click", () => {
+      likeButton.disabled = true; // Prevent multiple clicks
+
+      fetch(`/api/pages/${slug}/likes`, {
+        method: "PUT",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          likeCountSpan.textContent = data.likes.toString();
+          likeButton.classList.add("scale-110");
+          setTimeout(() => {
+            likeButton.classList.remove("scale-110");
+          }, 200);
+        })
+        .catch((error) => console.error("Error updating likes:", error))
+        .finally(() => {
+          setTimeout(() => {
+            const cookies = document.cookie.split("; ").reduce(
+              (acc, cookie) => {
+                const [name, value] = cookie.split("=");
+                acc[name] = value;
+                return acc;
+              },
+              {} as Record<string, string>,
+            );
+            if (cookies[`liked_${slug}`]) {
+              likeButton.disabled = true;
+            } else {
+              likeButton.disabled = false;
+            }
+          }, 300);
+        });
+    });
+  });
+</script>
