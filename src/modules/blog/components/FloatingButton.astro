@@ -4,6 +4,7 @@ export interface Props {
 }
 
 const { slug } = Astro.props;
+void slug;
 ---
 
 <div id="like-button-container" class="fixed bottom-8 right-8 z-50">
@@ -22,28 +23,26 @@ const { slug } = Astro.props;
   </button>
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const likeButton = document.getElementById(
-      "like-button",
-    ) as HTMLButtonElement;
-    const likeCountSpan = document.getElementById(
-      "like-count",
-    ) as HTMLSpanElement;
+<script type="module">
+  // Lazy-load FingerprintJS in the browser to get a stable visitorId
+  const fpPromise = import("@fingerprintjs/fingerprintjs")
+    .then(({ default: FingerprintJS }) => FingerprintJS.load())
+    .catch(() => null);
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const likeButton = document.getElementById("like-button");
+    const likeCountSpan = document.getElementById("like-count");
 
     if (!likeButton || !likeCountSpan) {
       return;
     }
 
-    const slug = likeButton.dataset.slug;
-    const cookies = document.cookie.split("; ").reduce(
-      (acc, cookie) => {
-        const [name, value] = cookie.split("=");
-        acc[name] = value;
-        return acc;
-      },
-      {} as Record<string, string>,
-    );
+    const slug = (likeButton)?.dataset?.slug;
+    const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+      const [name, value] = cookie.split("=");
+      acc[name] = value;
+      return acc;
+    }, {});
     if (cookies[`liked_${slug}`]) {
       likeButton.disabled = true;
     }
@@ -52,6 +51,16 @@ const { slug } = Astro.props;
       console.error("Like button is missing slug.");
       return;
     }
+    // Get visitorId from FingerprintJS (best-effort)
+    let visitorId = "";
+    try {
+      const fp = await fpPromise;
+      const result = await fp?.get();
+      visitorId = result?.visitorId ?? "";
+    } catch (e) {
+      console.warn("FingerprintJS not available:", e);
+    }
+
 
     // Fetch initial likes
     fetch(`/api/pages/${slug}/likes`)
@@ -66,6 +75,7 @@ const { slug } = Astro.props;
 
       fetch(`/api/pages/${slug}/likes`, {
         method: "PUT",
+        headers: visitorId ? { "X-Visitor-Id": visitorId } : undefined,
       })
         .then((response) => response.json())
         .then((data) => {
@@ -78,14 +88,11 @@ const { slug } = Astro.props;
         .catch((error) => console.error("Error updating likes:", error))
         .finally(() => {
           setTimeout(() => {
-            const cookies = document.cookie.split("; ").reduce(
-              (acc, cookie) => {
-                const [name, value] = cookie.split("=");
-                acc[name] = value;
-                return acc;
-              },
-              {} as Record<string, string>,
-            );
+            const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
+              const [name, value] = cookie.split("=");
+              acc[name] = value;
+              return acc;
+            }, {});
             if (cookies[`liked_${slug}`]) {
               likeButton.disabled = true;
             } else {

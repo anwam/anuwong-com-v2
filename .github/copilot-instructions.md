@@ -15,7 +15,6 @@ This is a personal blog site built with **Astro 5.x** using a modular architectu
 - **Tailwind CSS** - Styling with custom Thai font configuration
 - **Cloudflare Pages Functions** - Backend API using Hono framework
 - **TypeScript** - Strict typing throughout
-- **Volta** - Node.js version management (locked to 20.13.1)
 
 ## Development Workflows
 
