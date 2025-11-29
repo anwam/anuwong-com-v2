@@ -7,16 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["IBM Plex Sans Thai", "Inter", ...defaultTheme.fontFamily.sans],
-        serif: ["IBM Plex Serif", "Sarabun", ...defaultTheme.fontFamily.serif],
-      },
-      animation: {
-        "infinite-scroll": "infinite-scroll 30s linear infinite",
-      },
-      keyframes: {
-        "infinite-scroll": {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-100%)" },
-        },
+        serif: ["Sarabun", ...defaultTheme.fontFamily.serif],
       },
     },
   },

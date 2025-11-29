@@ -14,20 +14,23 @@ interface Props {
   title: string;
   description: string;
   imageUrl?: string;
+  ogType?: "website" | "article";
 }
 
-const { title, description, imageUrl } = Astro.props;
+const { title, description, imageUrl, ogType } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="th">
   <head>
-    <BaseHead title={title} description={description} imageUrl={imageUrl} />
+    <BaseHead title={title} description={description} imageUrl={imageUrl} ogType={ogType} />
     <slot name="head" />
   </head>
   <body class="bg-gray-300">
     <Header />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
     <slot name="scripts" />
 

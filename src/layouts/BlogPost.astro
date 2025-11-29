@@ -10,17 +10,33 @@ type Props = CollectionEntry<"blog">["data"] & {
   slug?: string;
 };
 
-const { title, description, date, updatedDate, preview, id, slug, tags } =
+const { title, description, date, updatedDate, preview, previewAlt, id, slug, tags } =
   Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description: description,
+  datePublished: date.toISOString(),
+  ...(updatedDate && { dateModified: updatedDate.toISOString() }),
+  image: preview ? new URL(preview.src, Astro.site).toString() : undefined,
+  author: {
+    "@type": "Person",
+    name: "Anuwong",
+  },
+};
 ---
 
 <BaseLayout
   title={`${title} | ${SITE_TITLE}`}
   description={description}
   imageUrl={preview?.src}
+  ogType="article"
 >
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
   <slot name="head" />
-  <main class="container mx-auto lg:max-w-5xl">
+  <div class="container mx-auto lg:max-w-5xl">
     <header class="bg-gray-50 p-8">
       {
         preview && (
@@ -29,7 +45,7 @@ const { title, description, date, updatedDate, preview, id, slug, tags } =
             loading="eager"
             sizes="(min-width: 1024px)  864px, (min-width: 768px) 648px, 100vw"
             src={preview}
-            alt={`${slug} preview`}
+            alt={previewAlt || `${slug} preview`}
             formats={["webp", "jpg"]}
           />
         )
@@ -50,7 +66,7 @@ const { title, description, date, updatedDate, preview, id, slug, tags } =
       }
       <slot />
     </article>
-  </main>
+  </div>
   <div
     id="giscus"
     class="giscus container mx-auto mt-4 px-2 lg:max-w-5xl lg:px-0"
@@ -69,7 +85,7 @@ const { title, description, date, updatedDate, preview, id, slug, tags } =
     data-emit-metadata="0"
     data-input-position="top"
     data-theme="light_tritanopia"
-    data-lang="en"
+    data-lang="th"
     data-loading="lazy"
     crossorigin="anonymous"
     async></script>
