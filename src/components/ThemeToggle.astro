@@ -37,20 +37,24 @@
 </button>
 
 <script>
+  const toggleTheme = () => {
+    const isDark = document.documentElement.classList.contains("dark");
+    if (isDark) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+  };
+
   const setupThemeToggle = () => {
     const toggleBtn = document.getElementById("theme-toggle");
     if (!toggleBtn) return;
 
-    toggleBtn.addEventListener("click", () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      if (isDark) {
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-      } else {
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      }
-    });
+    // Rebinding safely avoids duplicate listeners after client-side page swaps.
+    toggleBtn.removeEventListener("click", toggleTheme);
+    toggleBtn.addEventListener("click", toggleTheme);
   };
 
   // Run on page load

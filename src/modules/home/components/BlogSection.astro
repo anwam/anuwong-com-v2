@@ -1,4 +1,5 @@
 ---
+import FormattedDate from "@/components/FormattedDate.astro";
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 
@@ -23,19 +24,26 @@ const { posts } = Astro.props;
           <li class="overflow-hidden rounded-lg bg-gray-50 transition-all hover:shadow hover:shadow-gray-300 dark:border dark:border-gray-800/80 dark:bg-gray-900/40 dark:hover:shadow-none">
             <a
               class="flex h-full flex-row items-center gap-4 p-4"
-              href={`/blogs/${post.slug}`}
+              href={`/blogs/${post.id}`}
             >
               {post.data.preview && (
                 <Image
                   src={post.data.preview}
                   width={192}
                   height={192}
-                  class="aspect-square h-[64px] w-[64px] rounded-lg border border-gray-300 bg-gray-50 object-contain p-1"
-                  alt={`preview of ${post.slug}`}
+                  class="aspect-square h-16 w-16 rounded-lg border border-gray-300 bg-gray-50 object-contain p-1"
+                  alt={`preview of ${post.id}`}
                 />
               )}
 
-              <h3>{post.data.title}</h3>
+              <div class="flex min-w-0 flex-col gap-1">
+                <h3 class="line-clamp-2 font-semibold text-gray-900 dark:text-gray-100">
+                  {post.data.title}
+                </h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  <FormattedDate date={post.data.date} />
+                </p>
+              </div>
             </a>
           </li>
         ))}

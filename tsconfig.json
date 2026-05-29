@@ -1,12 +1,19 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "strictNullChecks": true,
     "paths": {
-      "@/components/*": ["src/components/*"],
-      "@/assets/*": ["src/assets/*"],
-      "@/modules/*": ["src/modules/*"]
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/assets/*": [
+        "src/assets/*"
+      ],
+      "@/modules/*": [
+        "src/modules/*"
+      ]
     }
   }
 }

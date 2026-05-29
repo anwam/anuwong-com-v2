@@ -24,7 +24,7 @@ const { post } = Astro.props;
     "transition-all hover:shadow-lg",
     "cursor-pointer",
   ]}
-  data-post-slug={post.slug}
+  data-post-slug={post.id}
 >
   <article
     class="relative row-span-4 grid h-auto max-h-full max-w-full grid-rows-subgrid self-start"
@@ -36,9 +36,9 @@ const { post } = Astro.props;
             src={post.data.preview}
             width={192}
             height={192}
-            class="aspect-square h-[64px] w-[64px] rounded-lg border bg-white object-contain"
+            class="aspect-square h-16 w-16 rounded-lg border bg-white object-contain"
             loading={"lazy"}
-            alt={`${post.slug} preview`}
+            alt={`${post.id} preview`}
           />
         )
       }
