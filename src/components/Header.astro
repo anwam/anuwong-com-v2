@@ -18,14 +18,14 @@ import ThemeToggle from "./ThemeToggle.astro";
             alt="Profile Image"
             width={64}
             height={64}
-            class="inline-block h-[32px] w-[32px] rounded-full"
+            class="inline-block h-8 w-8 rounded-full"
           />
           <h2 class="hidden sm:block">
             <span class="px-2 py-4">{SITE_TITLE}</span>
           </h2>
         </a>
       </li>
-      <li class="flex flex-shrink-0 flex-row items-center gap-4">
+      <li class="flex shrink-0 flex-row items-center gap-4">
         <HeaderLink href="/blogs">Blogs</HeaderLink>
         <HeaderLink href="/tags">Tags</HeaderLink>
         <ThemeToggle />

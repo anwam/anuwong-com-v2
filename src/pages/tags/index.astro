@@ -1,6 +1,5 @@
 ---
 import { getCollection } from "astro:content";
-import BlogItem from "@/modules/blog/components/BlogItem.astro";
 import { SITE_TITLE } from "../../consts";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
@@ -27,24 +26,45 @@ allPosts.forEach((post) => {
   }
 });
 
-const tags = Object.keys(tagCountMap).sort();
+const tags: Tag[] = Object.entries(tagCountMap)
+  .map(([name, count]) => ({ name, count }))
+  .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 ---
 
 <BaseLayout title={title} description="A collection of blogs written by me.">
   <main class="container mx-auto mt-3 px-3 md:mt-4 md:px-0 lg:max-w-5xl">
-    <section class="grid grid-cols-1 gap-2 md:grid-cols-3">
+    <header
+      class="mb-4 rounded-2xl border border-gray-300/60 bg-linear-to-br from-gray-100 via-gray-50 to-gray-200/60 p-5 shadow-sm transition-colors duration-300 md:p-7 dark:border-gray-800/80 dark:from-gray-900/80 dark:via-gray-900/50 dark:to-gray-800/40"
+    >
+      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-gray-600 dark:text-gray-400">
+        Discover by topic
+      </p>
+      <h1 class="mt-2 text-3xl font-bold text-gray-900 md:text-4xl dark:text-gray-100">
+        Browse Tags
+      </h1>
+      <p class="mt-3 text-gray-700 dark:text-gray-300">
+        {tags.length} tags across {allPosts.length} published posts.
+      </p>
+    </header>
+
+    <section class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
       {
-        tags.map((post, index) => (
+        tags.map((tag) => (
           <a
-            href={`/tags/${post}`}
-            class="rounded-lg border border-gray-300/40 bg-gray-200 p-2 text-gray-900 transition transition-colors duration-300 hover:bg-gray-300 dark:border-gray-800/80 dark:bg-gray-900/40 dark:text-gray-100 dark:hover:bg-gray-800/60"
+            href={`/tags/${tag.name}`}
+            class="group rounded-2xl border border-gray-300/50 bg-gray-100/80 p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400/60 hover:bg-gray-50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 motion-reduce:transform-none dark:border-gray-800/85 dark:bg-gray-900/40 dark:hover:border-gray-700/90 dark:hover:bg-gray-900/70 dark:focus-visible:ring-offset-gray-950"
           >
-            <h2 class="flex items-center gap-x-2 text-base font-semibold text-gray-900 dark:text-gray-100">
-              #{post}{" "}
-              <span class="text-sm text-gray-600 dark:text-gray-400">
-                ( {tagCountMap[post]} )
+            <h2 class="flex items-center justify-between gap-4 text-base font-semibold text-gray-900 dark:text-gray-100">
+              <span class="transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transform-none">
+                #{tag.name}
+              </span>
+              <span class="inline-flex min-w-9 items-center justify-center rounded-full bg-gray-900/10 px-2 py-0.5 text-sm text-gray-700 transition-colors duration-300 dark:bg-gray-100/10 dark:text-gray-200">
+                {tag.count}
               </span>
             </h2>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+              {tag.count} {tag.count === 1 ? "post" : "posts"}
+            </p>
           </a>
         ))
       }
