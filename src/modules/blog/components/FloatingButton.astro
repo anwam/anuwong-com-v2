@@ -7,13 +7,13 @@ const { slug } = Astro.props;
 void slug;
 ---
 
-<div id="like-button-container" class="fixed bottom-8 right-8 z-50">
+<div id="like-button-container" class="fixed right-8 bottom-8 z-50">
   <button
     id="like-button"
     data-slug={slug}
     class:list={[
       "flex items-center gap-2 rounded-full bg-white px-4 py-2 text-lg shadow-lg transition-all",
-      "hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2",
+      "hover:scale-105 hover:shadow-xl focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none",
       "dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700",
     ]}
     aria-label="Like this post"
@@ -29,7 +29,7 @@ void slug;
     .then(({ default: FingerprintJS }) => FingerprintJS.load())
     .catch(() => null);
 
-  document.addEventListener("DOMContentLoaded", async () => {
+  document.addEventListener("astro:page-load", async () => {
     const likeButton = document.getElementById("like-button");
     const likeCountSpan = document.getElementById("like-count");
 
@@ -37,7 +37,7 @@ void slug;
       return;
     }
 
-    const slug = (likeButton)?.dataset?.slug;
+    const slug = likeButton?.dataset?.slug;
     const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
       const [name, value] = cookie.split("=");
       acc[name] = value;
@@ -61,7 +61,6 @@ void slug;
       console.warn("FingerprintJS not available:", e);
     }
 
-
     // Fetch initial likes
     fetch(`/api/pages/${slug}/likes`)
       .then((response) => response.json())
@@ -75,7 +74,12 @@ void slug;
 
       fetch(`/api/pages/${slug}/likes`, {
         method: "PUT",
-        headers: visitorId ? { "X-Visitor-Id": visitorId } : undefined,
+        headers: visitorId
+          ? {
+              "X-Visitor-Id": visitorId,
+              "x-fingerprintjs-id": visitorId,
+            }
+          : undefined,
       })
         .then((response) => response.json())
         .then((data) => {
@@ -88,11 +92,13 @@ void slug;
         .catch((error) => console.error("Error updating likes:", error))
         .finally(() => {
           setTimeout(() => {
-            const cookies = document.cookie.split("; ").reduce((acc, cookie) => {
-              const [name, value] = cookie.split("=");
-              acc[name] = value;
-              return acc;
-            }, {});
+            const cookies = document.cookie
+              .split("; ")
+              .reduce((acc, cookie) => {
+                const [name, value] = cookie.split("=");
+                acc[name] = value;
+                return acc;
+              }, {});
             if (cookies[`liked_${slug}`]) {
               likeButton.disabled = true;
             } else {

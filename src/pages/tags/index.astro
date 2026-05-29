@@ -37,10 +37,13 @@ const tags = Object.keys(tagCountMap).sort();
         tags.map((post, index) => (
           <a
             href={`/tags/${post}`}
-            class="rounded-lg border bg-gray-200 p-2 transition hover:bg-gray-300"
+            class="rounded-lg border border-gray-300/40 bg-gray-200 p-2 text-gray-900 transition transition-colors duration-300 hover:bg-gray-300 dark:border-gray-800/80 dark:bg-gray-900/40 dark:text-gray-100 dark:hover:bg-gray-800/60"
           >
-            <h2 class="flex items-center gap-x-2 text-base font-semibold">
-              #{post} <span class="text-sm">( {tagCountMap[post]} )</span>
+            <h2 class="flex items-center gap-x-2 text-base font-semibold text-gray-900 dark:text-gray-100">
+              #{post}{" "}
+              <span class="text-sm text-gray-600 dark:text-gray-400">
+                ( {tagCountMap[post]} )
+              </span>
             </h2>
           </a>
         ))

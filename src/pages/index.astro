@@ -18,12 +18,13 @@ const hobbies = [
 
 const posts = (await getCollection("blog", (blog) => !blog.data.draft))
   .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
-  .slice(0, 12);
+  .slice(0, 12)
+  .map((post) => ({ ...post, slug: post.id }));
 ---
 
 <BaseLayout title={title} description={SITE_DESCRIPTION}>
   <main
-    class="container mx-auto flex flex-col gap-4 bg-gray-200 px-2 py-2 md:px-4 md:py-8 lg:max-w-5xl"
+    class="container mx-auto flex flex-col gap-4 bg-gray-200 px-2 py-2 transition-colors duration-300 md:px-4 md:py-8 lg:max-w-5xl dark:bg-gray-900"
   >
     <h1 class="sr-only">{SITE_TITLE}</h1>
     <header>
@@ -32,11 +33,11 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
 
     <BlogSection posts={posts} />
 
-    <h2 class="text-xl font-bold text-gray-800">Hobbies</h2>
+    <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">Hobbies</h2>
     <ul class="grid grid-flow-row grid-cols-12 gap-4">
       {
         hobbies.map((hobby) => (
-          <li class="col-span-4 flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 hover:shadow hover:shadow-gray-300">
+          <li class="col-span-4 flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 transition-all duration-300 hover:shadow hover:shadow-gray-300 dark:border dark:border-gray-800/80 dark:bg-gray-900/40 dark:hover:shadow-none">
             {hobby.split(" ").map((h) => (
               <span>{h}</span>
             ))}

@@ -6,6 +6,7 @@ import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-700.css";
 import "@fontsource/sarabun/thai-400.css";
 import "@fontsource/sarabun/thai-700.css";
+import { ClientRouter } from "astro:transitions";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -23,10 +24,51 @@ const { title, description, imageUrl, ogType } = Astro.props;
 <!doctype html>
 <html lang="th">
   <head>
-    <BaseHead title={title} description={description} imageUrl={imageUrl} ogType={ogType} />
+    <BaseHead
+      title={title}
+      description={description}
+      imageUrl={imageUrl}
+      ogType={ogType}
+    />
+    <ClientRouter />
+    <script is:inline>
+      const getTheme = () => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+      };
+      if (getTheme() === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+    <script>
+      const applyTheme = () => {
+        const theme =
+          localStorage.getItem("theme") ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+      };
+      document.addEventListener("astro:after-swap", applyTheme);
+    </script>
     <slot name="head" />
   </head>
-  <body class="bg-gray-300">
+  <body
+    class="bg-gray-300 text-gray-900 transition-colors duration-300 dark:bg-gray-950 dark:text-gray-100"
+  >
     <Header />
     <main>
       <slot />
