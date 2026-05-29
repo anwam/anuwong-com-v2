@@ -4,8 +4,8 @@ import { handle } from "hono/cloudflare-pages";
 import { setCookie } from "hono/cookie";
 
 type Bindings = {
-	PAGE_VIEW: KVNamespace;
-	LIKES: KVNamespace;
+  PAGE_VIEW: KVNamespace;
+  LIKES: KVNamespace;
 };
 
 const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
@@ -31,9 +31,9 @@ const safeKV = async <T>(
 };
 
 app.get("/hello", (c) => {
-	return c.json({
-		message: "Hello, Cloudflare Pages!",
-	});
+  return c.json({
+    message: "Hello, Cloudflare Pages!",
+  });
 });
 
 app.get("/pages/:slug/views", async (c) => {
@@ -97,7 +97,8 @@ app.get("/pages/:slug/likes", async (c) => {
 });
 
 app.put("/pages/:slug/likes", async (c) => {
-  const visitorId = c.req.header("x-fingerprintjs-id") || null;
+  const visitorId =
+    c.req.header("x-fingerprintjs-id") || c.req.header("x-visitor-id") || null;
   const { slug } = c.req.param();
   if (!slug) return c.json({ error: "Slug is required" }, 400);
 
@@ -131,9 +132,7 @@ app.put("/pages/:slug/likes", async (c) => {
       ),
     );
   } else {
-    likePromises.push(
-      safeKV(() => c.env.LIKES.put(`like:${slug}`, "1"), null),
-    );
+    likePromises.push(safeKV(() => c.env.LIKES.put(`like:${slug}`, "1"), null));
   }
 
   await Promise.all(likePromises);

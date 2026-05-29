@@ -3,9 +3,12 @@ import HeaderLink from "./HeaderLink.astro";
 import { SITE_TITLE } from "../consts";
 import { Image } from "astro:assets";
 import ProfileImg from "../assets/images/profile-pic-2.jpg";
+import ThemeToggle from "./ThemeToggle.astro";
 ---
 
-<header class="sticky top-0 z-50 m-0 bg-gray-200 px-2 py-0 shadow-lg">
+<header
+  class="sticky top-0 z-50 m-0 border-b border-gray-300/50 bg-gray-200 px-2 py-0 shadow-md transition-colors duration-300 dark:border-gray-800/80 dark:bg-gray-900"
+>
   <nav class="container mx-auto lg:max-w-5xl">
     <ul class="flex h-16 w-full flex-row justify-between">
       <li class="flex flex-row items-center">
@@ -25,6 +28,7 @@ import ProfileImg from "../assets/images/profile-pic-2.jpg";
       <li class="flex flex-shrink-0 flex-row items-center gap-4">
         <HeaderLink href="/blogs">Blogs</HeaderLink>
         <HeaderLink href="/tags">Tags</HeaderLink>
+        <ThemeToggle />
         <a
           href="https://github.com/anwam"
           class="flex flex-row items-center justify-center gap-2 hover:underline hover:underline-offset-2"

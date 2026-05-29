@@ -42,37 +42,49 @@ const experiences: Array<Experience> = [
     present: false,
   },
   {
-    time: "May 2024 - Present",
+    time: "May 2024 - Oct 2024",
     workplace: "NocNoc",
     position: "Software Engineer - Full Stack",
     description: "Full Stack Software Engineer in the Shopping Experience Team",
+    present: false,
+  },
+  {
+    time: "Oct 2024 - Present",
+    workplace: "KBTG",
+    position: "Software Engineer",
+    description:
+      "Software Engineer developing full-stack applications and serverless services.",
     present: true,
   },
 ];
 ---
 
-<ol class="relative mt-2 border-s border-gray-700">
+<ol class="relative mt-2 border-s border-gray-700 dark:border-gray-800">
   {
     experiences.reverse().map((exp) => (
       <li class="ms-4">
-        <div class="absolute -start-1 mt-[10px] h-2 w-2 rounded-full border border-gray-900 bg-gray-700" />
+        <div class="absolute -start-1 mt-[10px] h-2 w-2 rounded-full border border-gray-900 bg-gray-700 dark:border-gray-100 dark:bg-gray-300" />
         <time
           class:list={[
-            "inline-block text-xs font-normal leading-none",
+            "inline-block text-xs leading-none font-normal",
             {
-              "mb-2 rounded-lg border border-gray-300 bg-gray-200 p-2 text-gray-700":
+              "mb-2 rounded-lg border border-gray-300 bg-gray-200 p-2 text-gray-700 dark:border-gray-800 dark:bg-gray-800/80 dark:text-gray-300":
                 exp.present,
             },
             {
-              "mb-1 text-gray-500": !exp.present,
+              "mb-1 text-gray-500 dark:text-gray-400": !exp.present,
             },
           ]}
         >
           {exp.time}
         </time>
-        <h3 class="text-lg font-semibold text-gray-900">{exp.position}</h3>
-        <p class="text-base font-normal text-gray-500">at {exp.workplace}</p>
-        <p class="mb-4 whitespace-pre-line text-sm font-normal text-gray-600">
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          {exp.position}
+        </h3>
+        <p class="text-base font-normal text-gray-500 dark:text-gray-400">
+          at {exp.workplace}
+        </p>
+        <p class="mb-4 text-sm font-normal whitespace-pre-line text-gray-600 dark:text-gray-300">
           {exp.description}
         </p>
       </li>

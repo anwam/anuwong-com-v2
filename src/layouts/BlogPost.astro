@@ -10,8 +10,17 @@ type Props = CollectionEntry<"blog">["data"] & {
   slug?: string;
 };
 
-const { title, description, date, updatedDate, preview, previewAlt, id, slug, tags } =
-  Astro.props;
+const {
+  title,
+  description,
+  date,
+  updatedDate,
+  preview,
+  previewAlt,
+  id,
+  slug,
+  tags,
+} = Astro.props;
 
 const schema = {
   "@context": "https://schema.org",
@@ -34,10 +43,16 @@ const schema = {
   imageUrl={preview?.src}
   ogType="article"
 >
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(schema)}
+    slot="head"
+  />
   <slot name="head" />
   <div class="container mx-auto lg:max-w-5xl">
-    <header class="bg-gray-50 p-8">
+    <header
+      class="border-x border-t border-transparent bg-gray-50 p-8 transition-colors duration-300 dark:border-gray-800/80 dark:bg-gray-900/60"
+    >
       {
         preview && (
           <Picture
@@ -51,7 +66,9 @@ const schema = {
         )
       }
     </header>
-    <article class="prose prose-stone max-w-none bg-gray-50 px-8 py-4">
+    <article
+      class="prose prose-stone dark:prose-invert max-w-none border-x border-b border-transparent bg-gray-50 px-8 py-4 transition-colors duration-300 dark:border-gray-800/80 dark:bg-gray-900/40"
+    >
       <h1>{title}</h1>
       <FormattedDate
         class="rounded-full bg-gray-600 px-2 py-1 text-gray-100"

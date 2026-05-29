@@ -1,7 +1,8 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 const blog = defineCollection({
-  type: "content",
+  loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
   // Type-check frontmatter using a schema
   schema: ({ image }) =>
     z.object({
@@ -29,7 +30,7 @@ const blog = defineCollection({
             })
             .refine((tag) => tag === tag.toLowerCase(), {
               message: "Tags must be lowercase.",
-            })
+            }),
         )
         .optional(),
       lastmod: z

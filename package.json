@@ -16,23 +16,25 @@
     "@fontsource/ibm-plex-sans-thai": "5.2.8",
     "@fontsource/inter": "5.2.8",
     "@fontsource/sarabun": "5.2.8",
-    "hono": "4.10.3"
+    "hono": "^4.12.23"
   },
   "devDependencies": {
-    "@astrojs/mdx": "4.3.7",
-    "@astrojs/partytown": "2.1.4",
-    "@astrojs/rss": "4.0.12",
-    "@astrojs/sitemap": "3.6.0",
-    "@astrojs/tailwind": "6.0.2",
-    "@cloudflare/workers-types": "4.20251011.0",
+    "@astrojs/mdx": "^5.0.6",
+    "@astrojs/partytown": "^2.1.7",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.0",
+    "@cloudflare/workers-types": "^4.20260526.1",
     "@tailwindcss/typography": "0.5.19",
-    "astro": "5.14.6",
-    "astro-compress": "2.3.8",
+    "astro": "^6.3.8",
+    "astro-compress": "^2.4.1",
     "astro-critters": "2.2.1",
-    "prettier": "3.6.2",
+    "prettier": "^3.8.3",
     "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "0.7.1",
-    "tailwindcss": "3.4.13",
-    "wrangler": "4.43.0"
-  }
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.3.0",
+    "wrangler": "^4.95.0"
+  },
+  "packageManager": "pnpm@11.4.0+sha512.f0febc7e37552ab485494a914241b338e0b3580b93d54ce31f00933015880863129038a1b4ae4e414a0ee63ac35bf21197e990172c4a68256450b5636310968f"
 }

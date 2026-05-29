@@ -21,10 +21,11 @@ const isActive =
   href={href}
   class:list={[
     className,
-    "font-bold text-gray-600 hover:text-gray-900",
+    "font-bold text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100",
     "px-4 py-2",
-    "inline-block border-b-4",
-    { "border-gray-800": isActive },
+    "inline-block border-b-4 border-transparent transition-colors",
+    "hover:border-gray-500 dark:hover:border-gray-400",
+    { "border-gray-800 dark:border-gray-100": isActive },
   ]}
   {...props}
 >

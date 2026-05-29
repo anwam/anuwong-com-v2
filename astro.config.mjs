@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import partytown from "@astrojs/partytown";
 import critters from "astro-critters";
 import compress from "astro-compress";
@@ -12,7 +12,6 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
-    tailwind(),
     partytown({
       config: {
         forward: ["dataLayer.push"],
@@ -21,4 +20,10 @@ export default defineConfig({
     critters(),
     compress(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
+  image: {
+    dangerouslyProcessSVG: true,
+  },
 });
