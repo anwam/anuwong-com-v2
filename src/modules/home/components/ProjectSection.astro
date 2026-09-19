@@ -1,0 +1,71 @@
+---
+import KorakotMotorsScreenshot from "@/assets/projects/korakotmotors-com/ss-1.png";
+import RyuuCafeScreenshot from "@/assets/projects/ryuucafe-com/ss-1.png";
+import { Image } from "astro:assets";
+const projects = [
+  {
+    title: "korakotmotors.com",
+    description:
+      "พัฒนาเว็บไซต์สำหรับเต็นท์รถมือสองในโคราชแบบครบวงจร ให้ลูกค้าค้นหาและดูรายละเอียดรถได้อย่างรวดเร็ว พร้อมเชื่อมต่อ CMS เพื่อให้ทีมงานจัดการข้อมูลรถในสต็อกได้สะดวกและเป็นระบบมากขึ้น",
+    screenshot: KorakotMotorsScreenshot,
+    url: "https://korakotmotors.com",
+    tech: ["NextJS", "Meilisearch", "CMS"],
+  },
+  {
+    title: "ryuucafe.com",
+    description:
+      "ออกแบบและพัฒนาเว็บไซต์สำหรับคาเฟ่มัทฉะขนาดเล็กในกรุงเทพฯ โดยนำเสนอเมนูและสายพันธุ์ของมัทฉะเกรดพิธีการผ่าน Interactive UI และการแสดงเรื่องราวผ่านแผนที่เพื่อแสดงแหล่งปลูกของแต่ละสายพันธุ์",
+    screenshot: RyuuCafeScreenshot,
+    url: "https://ryuucafe.com",
+    tech: ["Astro", "Interactive", "Showcase", "CMS"],
+  },
+];
+---
+
+<>
+  <h2 class="text-xl font-bold text-gray-800 md:text-2xl dark:text-gray-100">
+    Projects
+  </h2>
+  <p class="max-w-3xl">
+    ยกระดับธุรกิจท้องถิ่นด้วยเว็บไซต์ที่ออกแบบให้เหมาะกับการทำงานจริง ตั้งแต่
+    การนำเสนอสินค้าและบริการ ไปจนถึงการจัดการข้อมูลหลังบ้าน เพื่อช่วยเพิ่มโอกาส
+    ในการเข้าถึงลูกค้าและสนับสนุนการเติบโตของธุรกิจ
+  </p>
+  <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+    {
+      projects.map((project) => (
+        <li class="flex min-w-0 flex-col gap-3">
+          <div class="relative aspect-4/3 w-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700">
+            <Image
+              src={project.screenshot}
+              alt={`${project.title} screenshot`}
+              class="h-full w-full origin-top object-cover"
+            />
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            {project.tech.map((tech) => (
+              <span class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-800 dark:bg-gray-700 dark:text-gray-100">
+                {tech}
+              </span>
+            ))}
+          </div>
+          <div class="flex flex-1 flex-col rounded-lg bg-gray-100 p-4 dark:bg-gray-800">
+            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-100">
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="underline decoration-1 underline-offset-4 hover:text-gray-600 focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-800 dark:hover:text-gray-300 dark:focus-visible:outline-gray-100"
+              >
+                {project.title}
+              </a>
+            </h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              {project.description}
+            </p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</>

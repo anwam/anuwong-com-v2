@@ -4,6 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Profile from "@/modules/home/components/Profile.astro";
 import BlogSection from "@/modules/home/components/BlogSection.astro";
+import ProjectSection from "@/modules/home/components/ProjectSection.astro";
 
 const title = `Home | ${SITE_TITLE}`;
 
@@ -31,6 +32,8 @@ const posts = (await getCollection("blog", (blog) => !blog.data.draft))
       <Profile />
     </header>
 
+    <!-- Projects -->
+    <ProjectSection />
     <BlogSection posts={posts} />
 
     <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">Hobbies</h2>

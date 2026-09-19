@@ -31,7 +31,7 @@ const { title, description, imageUrl, ogType } = Astro.props;
       ogType={ogType}
     />
     <ClientRouter />
-    <script is:inline>
+    <!-- <script is:inline>
       const getTheme = () => {
         if (
           typeof localStorage !== "undefined" &&
@@ -48,7 +48,7 @@ const { title, description, imageUrl, ogType } = Astro.props;
       } else {
         document.documentElement.classList.remove("dark");
       }
-    </script>
+    </script> -->
     <script>
       const applyTheme = () => {
         const theme =
