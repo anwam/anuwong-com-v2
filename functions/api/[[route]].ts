@@ -2,13 +2,18 @@ import type { KVNamespace } from "@cloudflare/workers-types";
 import { Hono } from "hono";
 import { handle } from "hono/cloudflare-pages";
 import { setCookie } from "hono/cookie";
+import {
+  likePost,
+  readPostLikes,
+  validVisitor,
+} from "../../src/modules/blog/postLikes.ts";
 
 type Bindings = {
   PAGE_VIEW: KVNamespace;
   LIKES: KVNamespace;
 };
 
-const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
+export const app = new Hono<{ Bindings: Bindings }>().basePath("/api");
 
 app.use("*", async (c, next) => {
   await next();
@@ -78,70 +83,41 @@ app.put("/pages/:slug/views", async (c) => {
 
 app.get("/pages/:slug/likes", async (c) => {
   const { slug } = c.req.param();
-  if (!slug) return c.json({ error: "Slug is required" }, 400);
-
-  const count = await safeKV(() => c.env.LIKES.get(`like:${slug}`), null);
-
-  if (count === null) {
-    await safeKV(() => c.env.LIKES.put(`like:${slug}`, "0"), null);
-    return c.json({
-      slug: slug,
-      likes: 0,
-    });
+  const visitor =
+    validVisitor(c.req.header("x-fingerprintjs-id")) ||
+    validVisitor(c.req.header("x-visitor-id"));
+  c.header("Cache-Control", "no-store");
+  try {
+    return c.json(await readPostLikes(c.env.LIKES, slug, visitor));
+  } catch {
+    return c.json(
+      { error: "Likes are temporarily unavailable. Please try again." },
+      503,
+    );
   }
-
-  return c.json({
-    slug: slug,
-    likes: Number(count) || 0,
-  });
 });
 
 app.put("/pages/:slug/likes", async (c) => {
-  const visitorId =
-    c.req.header("x-fingerprintjs-id") || c.req.header("x-visitor-id") || null;
   const { slug } = c.req.param();
-  if (!slug) return c.json({ error: "Slug is required" }, 400);
-
-  const count = await safeKV(() => c.env.LIKES.get(`like:${slug}`), null);
-  const alreadyLiked = await safeKV(
-    () => c.env.LIKES.get(`liked:${slug}:${visitorId}`),
-    null,
-  );
-
-  if (alreadyLiked) {
-    setCookie(c, `liked_${slug}`, "true", {});
+  const visitor =
+    validVisitor(c.req.header("x-fingerprintjs-id")) ||
+    validVisitor(c.req.header("x-visitor-id"));
+  c.header("Cache-Control", "no-store");
+  if (!visitor) return c.json({ error: "A visitor ID is required." }, 400);
+  try {
+    const result = await likePost(c.env.LIKES, slug, visitor);
+    setCookie(c, `liked_${encodeURIComponent(slug)}`, "true", {
+      path: "/",
+      sameSite: "Lax",
+      secure: new URL(c.req.url).protocol === "https:",
+    });
+    return c.json(result);
+  } catch {
     return c.json(
-      {
-        slug: slug,
-        likes: count ? Number(count) || 0 : 0,
-        message: "You have already liked this page.",
-      },
-      200,
+      { error: "Your like could not be saved. Please try again." },
+      503,
     );
   }
-
-  const likePromises = [
-    safeKV(() => c.env.LIKES.put(`liked:${slug}:${visitorId}`, "true"), null),
-  ];
-
-  if (count) {
-    likePromises.push(
-      safeKV(
-        () => c.env.LIKES.put(`like:${slug}`, (Number(count) + 1).toString()),
-        null,
-      ),
-    );
-  } else {
-    likePromises.push(safeKV(() => c.env.LIKES.put(`like:${slug}`, "1"), null));
-  }
-
-  await Promise.all(likePromises);
-
-  setCookie(c, `liked_${slug}`, "true", {});
-  return c.json({
-    slug: slug,
-    likes: Number(count) + 1 || 1,
-  });
 });
 
 export const onRequest = handle(app);

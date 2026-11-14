@@ -1,34 +1,11 @@
 ---
-import { getCollection } from "astro:content";
+import { getBlogCatalog } from "@/modules/blog/getBlogCatalog";
 import { SITE_TITLE } from "../../consts";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const title = `Tags | ${SITE_TITLE}`;
 
-type Tag = {
-  name: string;
-  count: number;
-};
-
-const allPosts = (await getCollection("blog")).filter(
-  (blog) => blog.data.draft !== true,
-);
-const tagCountMap: Record<string, number> = {};
-allPosts.forEach((post) => {
-  if (post.data.tags) {
-    post.data.tags.forEach((tag) => {
-      if (tagCountMap[tag]) {
-        tagCountMap[tag] += 1;
-      } else {
-        tagCountMap[tag] = 1;
-      }
-    });
-  }
-});
-
-const tags: Tag[] = Object.entries(tagCountMap)
-  .map(([name, count]) => ({ name, count }))
-  .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+const { posts: allPosts, tags } = await getBlogCatalog();
 ---
 
 <BaseLayout title={title} description="A collection of blogs written by me.">
@@ -36,10 +13,14 @@ const tags: Tag[] = Object.entries(tagCountMap)
     <header
       class="mb-4 rounded-2xl border border-gray-300/60 bg-linear-to-br from-gray-100 via-gray-50 to-gray-200/60 p-5 shadow-sm transition-colors duration-300 md:p-7 dark:border-gray-800/80 dark:from-gray-900/80 dark:via-gray-900/50 dark:to-gray-800/40"
     >
-      <p class="text-sm font-semibold uppercase tracking-[0.18em] text-gray-600 dark:text-gray-400">
+      <p
+        class="text-sm font-semibold tracking-[0.18em] text-gray-600 uppercase dark:text-gray-400"
+      >
         Discover by topic
       </p>
-      <h1 class="mt-2 text-3xl font-bold text-gray-900 md:text-4xl dark:text-gray-100">
+      <h1
+        class="mt-2 text-3xl font-bold text-gray-900 md:text-4xl dark:text-gray-100"
+      >
         Browse Tags
       </h1>
       <p class="mt-3 text-gray-700 dark:text-gray-300">
@@ -52,7 +33,7 @@ const tags: Tag[] = Object.entries(tagCountMap)
         tags.map((tag) => (
           <a
             href={`/tags/${tag.name}`}
-            class="group rounded-2xl border border-gray-300/50 bg-gray-100/80 p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400/60 hover:bg-gray-50 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 motion-reduce:transform-none dark:border-gray-800/85 dark:bg-gray-900/40 dark:hover:border-gray-700/90 dark:hover:bg-gray-900/70 dark:focus-visible:ring-offset-gray-950"
+            class="group rounded-2xl border border-gray-300/50 bg-gray-100/80 p-4 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400/60 hover:bg-gray-50 hover:shadow-md focus-visible:ring-2 focus-visible:ring-cyan-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 focus-visible:outline-none motion-reduce:transform-none dark:border-gray-800/85 dark:bg-gray-900/40 dark:hover:border-gray-700/90 dark:hover:bg-gray-900/70 dark:focus-visible:ring-offset-gray-950"
           >
             <h2 class="flex items-center justify-between gap-4 text-base font-semibold text-gray-900 dark:text-gray-100">
               <span class="transition-transform duration-300 group-hover:translate-x-0.5 motion-reduce:transform-none">

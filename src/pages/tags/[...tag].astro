@@ -1,39 +1,21 @@
 ---
-import { getCollection } from "astro:content";
+import { getBlogCatalog } from "@/modules/blog/getBlogCatalog";
+import type { CollectionEntry } from "astro:content";
 import BlogItem from "@/modules/blog/components/BlogItem.astro";
 import { SITE_TITLE } from "../../consts";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection("blog");
-  const allTags = new Set<string>();
-
-  // Collect all unique tags from all posts
-  allPosts.forEach((post) => {
-    if (post.data.tags) {
-      post.data.tags.forEach((tag) => {
-        allTags.add(tag);
-      });
-    }
-  });
-
-  // Generate paths for each tag
-  return Array.from(allTags).map((tag) => ({
-    params: { tag },
+  const { tags } = await getBlogCatalog();
+  return tags.map(({ name, posts }) => ({
+    params: { tag: name },
+    props: { posts },
   }));
 }
 
 const { tag } = Astro.params;
-
-// Get all posts that have the current tag and are not drafts
-const posts = (await getCollection("blog"))
-  .filter((post) => {
-    if (post.data.draft) return false;
-    if (!post.data.tags) return false;
-    return post.data.tags.includes(tag as string);
-  })
-  .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
-  .map((post) => ({ ...post, slug: post.id }));
+type Props = { posts: CollectionEntry<"blog">[] };
+const { posts } = Astro.props;
 
 const title = `Tag: ${tag} | ${SITE_TITLE}`;
 const description = `All blog posts tagged with "${tag}"`;
@@ -46,15 +28,18 @@ const description = `All blog posts tagged with "${tag}"`;
     >
       <a
         href="/tags"
-        class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:text-gray-300 dark:hover:text-gray-100 dark:focus-visible:ring-offset-gray-950"
+        class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 focus-visible:ring-2 focus-visible:ring-cyan-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 focus-visible:outline-none dark:text-gray-300 dark:hover:text-gray-100 dark:focus-visible:ring-offset-gray-950"
       >
         ← All tags
       </a>
-      <h1 class="mt-3 text-3xl font-bold text-gray-900 md:text-4xl dark:text-gray-100">
+      <h1
+        class="mt-3 text-3xl font-bold text-gray-900 md:text-4xl dark:text-gray-100"
+      >
         <span class="text-gray-600 dark:text-cyan-400">#{tag}</span>
       </h1>
       <p class="mt-2 text-gray-700 dark:text-gray-300">
-        {posts.length} {posts.length === 1 ? "post" : "posts"} in this tag
+        {posts.length}
+        {posts.length === 1 ? "post" : "posts"} in this tag
       </p>
     </header>
 
@@ -72,7 +57,7 @@ const description = `All blog posts tagged with "${tag}"`;
           </p>
           <a
             href="/tags"
-            class="mt-4 inline-flex items-center rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-gray-100 transition-colors hover:bg-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-300 dark:focus-visible:ring-offset-gray-950"
+            class="mt-4 inline-flex items-center rounded-full bg-gray-900 px-4 py-2 text-sm font-semibold text-gray-100 transition-colors hover:bg-gray-700 focus-visible:ring-2 focus-visible:ring-cyan-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-100 focus-visible:outline-none dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-300 dark:focus-visible:ring-offset-gray-950"
           >
             Browse other tags
           </a>

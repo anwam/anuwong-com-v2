@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getBlogCatalog } from "@/modules/blog/getBlogCatalog";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Profile from "@/modules/home/components/Profile.astro";
@@ -17,10 +17,7 @@ const hobbies = [
   "🐈 Cat",
 ];
 
-const posts = (await getCollection("blog", (blog) => !blog.data.draft))
-  .sort((a, b) => b.data?.date.valueOf() - a.data?.date.valueOf())
-  .slice(0, 12)
-  .map((post) => ({ ...post, slug: post.id }));
+const posts = (await getBlogCatalog()).posts.slice(0, 12);
 ---
 
 <BaseLayout title={title} description={SITE_DESCRIPTION}>

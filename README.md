@@ -59,6 +59,12 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+Architecture changes are tracked in [docs/architecture-plan.md](docs/architecture-plan.md).
+
+Run `npm test` for catalog and request tests. For browser checks, run
+`pnpm exec playwright install chromium` once, then `npm run test:browser`.
+The browser suite builds the site and starts a production preview on port 4329.
+
 ## 👀 Want to learn more?
 
 Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
