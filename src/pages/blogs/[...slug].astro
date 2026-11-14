@@ -1,29 +1,20 @@
 ---
-import { type CollectionEntry, getCollection, render } from "astro:content";
+import { type CollectionEntry, render } from "astro:content";
+import { getBlogCatalog } from "@/modules/blog/getBlogCatalog";
 import FloatingButton from "@/modules/blog/components/FloatingButton.astro";
 import BlogPost from "../../layouts/BlogPost.astro";
 
 export async function getStaticPaths() {
-  const rawPosts = await getCollection("blog");
-  const posts = rawPosts.map((post) => ({ ...post, slug: post.id }));
-  return posts
-    .filter((post) => !post.data.draft)
-    .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
-    .map((post, index, postList) => {
-      return {
-        params: { slug: post.slug },
-        props: {
-          post,
-          next: postList[index + 1] ?? null,
-          prev: postList[index - 1] ?? null,
-        },
-      };
-    });
+  const { navigation } = await getBlogCatalog();
+  return navigation.map(({ post, next, prev }) => ({
+    params: { slug: post.id },
+    props: { post, next, prev },
+  }));
 }
 type Props = {
-  post: CollectionEntry<"blog"> & { slug: string };
-  next: (CollectionEntry<"blog"> & { slug: string }) | null;
-  prev: (CollectionEntry<"blog"> & { slug: string }) | null;
+  post: CollectionEntry<"blog">;
+  next: CollectionEntry<"blog"> | null;
+  prev: CollectionEntry<"blog"> | null;
 };
 
 const { post, next, prev } = Astro.props;
@@ -31,7 +22,7 @@ const { tags } = post.data;
 const { Content } = await render(post);
 ---
 
-<BlogPost {...post.data} id={post.id} slug={post.slug}>
+<BlogPost {...post.data} id={post.id} slug={post.id}>
   <Content />
   {
     tags && (
@@ -55,7 +46,7 @@ const { Content } = await render(post);
       prev ? (
         <a
           class="rounded bg-gray-600 px-4 py-2 text-sm text-gray-200 shadow-sm"
-          href={`/blogs/${prev.slug}`}
+          href={`/blogs/${prev.id}`}
         >
           ← {prev.data.title}
         </a>
@@ -67,7 +58,7 @@ const { Content } = await render(post);
       next ? (
         <a
           class="rounded bg-gray-600 px-4 py-2 text-sm text-gray-200 shadow-sm"
-          href={`/blogs/${next.slug}`}
+          href={`/blogs/${next.id}`}
         >
           {next.data.title} →
         </a>
@@ -76,7 +67,7 @@ const { Content } = await render(post);
       )
     }
   </section>
-  <FloatingButton slug={post.slug.replaceAll("/", "-")} />
+  <FloatingButton slug={post.id.replaceAll("/", "-")} />
 </BlogPost>
 
 <script>

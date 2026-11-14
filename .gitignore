@@ -22,3 +22,5 @@ pnpm-debug.log*
 
 # Wrangler
 .wrangler
+test-results/
+playwright-report/

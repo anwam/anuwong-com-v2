@@ -7,6 +7,7 @@ import "@fontsource/inter/latin-700.css";
 import "@fontsource/sarabun/thai-400.css";
 import "@fontsource/sarabun/thai-700.css";
 import { ClientRouter } from "astro:transitions";
+import themeScript from "@/modules/theme/theme.ts?raw";
 import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -30,40 +31,8 @@ const { title, description, imageUrl, ogType } = Astro.props;
       imageUrl={imageUrl}
       ogType={ogType}
     />
+    <script is:inline set:html={themeScript} />
     <ClientRouter />
-    <!-- <script is:inline>
-      const getTheme = () => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
-        }
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light";
-      };
-      if (getTheme() === "dark") {
-        document.documentElement.classList.add("dark");
-      } else {
-        document.documentElement.classList.remove("dark");
-      }
-    </script> -->
-    <script>
-      const applyTheme = () => {
-        const theme =
-          localStorage.getItem("theme") ||
-          (window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light");
-        if (theme === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      };
-      document.addEventListener("astro:after-swap", applyTheme);
-    </script>
     <slot name="head" />
   </head>
   <body
